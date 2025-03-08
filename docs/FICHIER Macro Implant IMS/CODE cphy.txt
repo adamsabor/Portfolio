@@ -1,0 +1,147 @@
+Sub CPHY()
+    Set Sys = Nothing
+    Set Sys = CreateObject("EXTRA.System")
+    
+    If (Sys Is Nothing) Then
+        MsgBox "Impossible de créer l'objet du système EXTRA.", vbCritical
+        Exit Sub
+    End If
+
+    MsgBox "Connexion réussie à EXTRA."
+    
+    SessionCount = Sys.sessions.Count
+    MsgBox "Nombre de sessions trouvées: " & SessionCount
+
+    For i = 1 To SessionCount
+        Select Case Sys.sessions.Item(i).Name
+            Case "Cmc-A"
+                Set ims = Sys.sessions.Item(i)
+            Case "Cmc-B"
+                Set ims = Sys.sessions.Item(i)
+            Case "Tandem Cergy"
+                Set tdm = Sys.sessions.Item(i)
+        End Select
+    Next
+
+    If (ims Is Nothing) Or IsNull(ims) Then
+        MsgBox "Ne trouve pas CMC-B.", vbCritical
+        Exit Sub
+    End If
+
+    MsgBox "Connexion à IMS réussie."
+
+    Set EcranIMS = ims.screen
+    If IsNull(EcranIMS) Then
+        MsgBox "Impossible de créer l'objet Session IMS.", vbCritical
+        Exit Sub
+    End If
+
+    MsgBox "Accès à l'écran IMS obtenu."
+
+    lignevar = 2
+
+    With ActiveWorkbook.Worksheets("SOURCE")
+        While .Cells(lignevar, 1) <> ""
+            ' Positionnement sur le menu principal
+            EcranIMS.SendKeys "<Pf11>"
+            
+            MsgBox "Menu principal atteint."
+
+            ' Mise en place de l'écran sur IMS
+            EcranIMS.SendKeys "CPHY<Enter>"
+            While EcranIMS.getstring(1, 4, 6) <> "MACPHY"
+                Wend
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Écran CPHY atteint."
+
+            RefXL = .Cells(lignevar, 1)
+            MsgBox "Référence lue : " & RefXL
+
+            Application.Wait (Now + TimeValue("0:00:01"))
+
+            If RefXL = "" Then
+                MsgBox "Référence vide. Fin de la macro."
+                GoTo fin
+            End If
+
+            ' Entrer la référence
+            EcranIMS.SendKeys RefXL
+            Application.Wait (Now + TimeValue("0:00:01"))
+            EcranIMS.SendKeys "<enter>"
+            MsgBox "Référence envoyée et validée."
+
+            ' Vérifier si une erreur TACPHY est présente
+            If EcranIMS.getstring(3, 2, 52) = "TACPHY -002- REFERENCE INCONNUE DANS LE DICTIONNAIRE" Then
+                MsgBox "Erreur : Référence inconnue."
+                GoTo refsuiv
+            End If
+
+            ' Tabuler jusqu'au champ de largeur
+            EcranIMS.SendKeys "<tab>"
+            While EcranIMS.Row <> 12 Or EcranIMS.Col <> 16
+                Wend
+            MsgBox "Prêt pour entrer la largeur."
+
+            ' Entrer la largeur
+            EcranIMS.SendKeys Sheets("SOURCE").Cells(lignevar, 24)
+            While EcranIMS.Row <> 12 Or EcranIMS.Col <> 36
+                Wend
+            MsgBox "Largeur envoyée."
+
+            ' Entrer le volume
+            EcranIMS.SendKeys Sheets("SOURCE").Cells(lignevar, 27)
+            While EcranIMS.Row <> 12 Or EcranIMS.Col <> 61
+                Wend
+            MsgBox "Volume envoyé."
+
+            ' Entrer le poids
+            EcranIMS.SendKeys Sheets("SOURCE").Cells(lignevar, 26)
+            While EcranIMS.Row <> 13 Or EcranIMS.Col <> 16
+                Wend
+            MsgBox "Poids envoyé."
+
+            ' Entrer la longueur
+            EcranIMS.SendKeys Sheets("SOURCE").Cells(lignevar, 23)
+            While EcranIMS.Row <> 14 Or EcranIMS.Col <> 16
+                Wend
+            MsgBox "Longueur envoyée."
+
+            ' Entrer la hauteur
+            EcranIMS.SendKeys Sheets("SOURCE").Cells(lignevar, 25)
+            While EcranIMS.Row <> 15 Or EcranIMS.Col <> 16
+                Wend
+            MsgBox "Hauteur envoyée."
+
+            ' Entrer la DLU
+Dim DLU As String
+DLU = Format(Sheets("SOURCE").Cells(lignevar, 28).Value, "0000") ' Forcer le format en 4 chiffres
+EcranIMS.SendKeys DLU
+While EcranIMS.Row <> 20 Or EcranIMS.Col <> 30
+    Wend
+MsgBox "DLU envoyée: " & DLU
+
+
+            ' Valider et revenir au menu principal
+            EcranIMS.SendKeys "<enter>"
+            While EcranIMS.Row <> 4 Or EcranIMS.Col <> 10
+                Wend
+            MsgBox "Entrée validée, retour au menu principal."
+
+            ' Marquer statut CPHY comme "ok"
+            Sheets("SOURCE").Cells(lignevar, 31) = "OK"
+  
+refsuiv:
+            ' Si la référence est incorrecte, marquer comme "No ok"
+            If EcranIMS.getstring(3, 2, 52) = "TACPHY -002- REFERENCE INCONNUE DANS LE DICTIONNAIRE" Then
+                Sheets("Source").Cells(lignevar, 31) = "No ok"
+            End If
+
+            lignevar = lignevar + 1
+
+        Wend
+    End With
+fin:
+    MsgBox "Fin du traitement."
+End Sub
+
+

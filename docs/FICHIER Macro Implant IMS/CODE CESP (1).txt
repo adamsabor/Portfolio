@@ -1,0 +1,184 @@
+Sub Cesp()
+    ' Création de l'objet EXTRA et connexion à la session IMS
+    Set Sys = Nothing
+    Set Sys = CreateObject("EXTRA.System")
+    
+    ' Vérification de la connexion à EXTRA
+    If (Sys Is Nothing) Then
+        MsgBox "Impossible de créer l'objet du système EXTRA." & vbCrLf & _
+               "L'exécution de la macro est interrompue.", vbCritical
+        Exit Sub
+    End If
+
+    ' Initialisation de variables pour accéder aux sessions et à l'écran IMS
+    Dim ims As Object
+    Dim EcranIMS As Object
+    Dim SessionCount As Integer
+    SessionCount = Sys.sessions.Count
+
+    ' Boucle pour rechercher les sessions disponibles et identifier celle à utiliser
+    For i = 1 To SessionCount
+        Select Case Sys.sessions.Item(i).Name
+            Case "Cmc-A", "Cmc-B", "Tandem Cergy"
+                Set ims = Sys.sessions.Item(i)
+        End Select
+    Next
+
+    ' Si aucune session IMS valide n'est trouvée, arrêt du programme
+    If ims Is Nothing Then
+        MsgBox "Session IMS introuvable.", vbCritical
+        Exit Sub
+    End If
+
+    ' Accès à l'écran IMS de la session
+    Set EcranIMS = ims.screen
+
+    ' Variable pour suivre la ligne en cours dans le fichier SOURCE
+    Dim lignevar As Integer
+    lignevar = 2
+
+    ' Accès à la feuille SOURCE de l'ActiveWorkbook pour lire les valeurs de chaque ligne
+    With ActiveWorkbook.Worksheets("SOURCE")
+        ' Boucle principale : parcourt chaque ligne de la feuille SOURCE jusqu'à une cellule vide dans la première colonne
+        While .Cells(lignevar, 1) <> ""
+            ' **Positionnement au menu principal dans IMS**
+            EcranIMS.SendKeys "<Pf11>"  ' Envoi de la touche PF11 pour retourner au menu principal
+            
+              ' **Accéder à l'écran CESP dans IMS**
+            EcranIMS.PutString "CESP"
+            EcranIMS.SendKeys "<Enter>"
+            While EcranIMS.getstring(1, 4, 6) <> "MACESP"
+                Wend
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Écran CESP atteint. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+           ' **Entrer la référence dans IMS**
+            Dim RefXL As String
+            RefXL = .Cells(lignevar, 1)
+            EcranIMS.SendKeys RefXL
+            Application.Wait (Now + TimeValue("0:00:01"))
+            EcranIMS.SendKeys "<Enter>"
+            MsgBox "Référence envoyée et validée."
+            
+            ' **Entrer le magasin**
+            EcranIMS.PutString "03", 7, 24
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Magasin envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer la date Valide du**
+            EcranIMS.SendKeys "<tab><tab><tab><tab><tab><tab>"
+            EcranIMS.SendKeys .Cells(lignevar, 4).Value
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Date Valide du envoyée."
+
+            ' **Entrer la date Au**
+            EcranIMS.SendKeys ""
+            EcranIMS.SendKeys .Cells(lignevar, 5).Value
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Date Au envoyée."
+
+            ' **Entrer la date Appli RCF**
+            EcranIMS.SendKeys ""
+            EcranIMS.SendKeys .Cells(lignevar, 6).Value
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Date Appli RCF envoyée."
+            ' **Entrer TYESP1**
+            EcranIMS.PutString .Cells(lignevar, 7).Value, 12, 21
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "TYESP1 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer ETIQESP1**
+            EcranIMS.PutString .Cells(lignevar, 8).Value, 12, 47
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ETIQESP1 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer GRAFESP1**
+            EcranIMS.PutString .Cells(lignevar, 9).Value, 12, 65
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "GRAFESP1 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer ARRESP2**
+            EcranIMS.PutString .Cells(lignevar, 10).Value, 14, 5
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ARRESP2 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer QTESP2**
+            EcranIMS.PutString .Cells(lignevar, 11).Value, 14, 10
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "QTESP2 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer TYESP2**
+            EcranIMS.PutString .Cells(lignevar, 12).Value, 14, 21
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "TYESP2 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer ETIQESP2**
+            EcranIMS.PutString .Cells(lignevar, 13).Value, 14, 47
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ETIQESP2 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' **Entrer GRAFESP2**
+            EcranIMS.PutString .Cells(lignevar, 14).Value, 14, 65
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "GRAFESP2 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer ARR3**
+            EcranIMS.PutString .Cells(lignevar, 15).Value, 16, 5
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ARR3 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer UN3**
+            EcranIMS.PutString .Cells(lignevar, 16).Value, 16, 10
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "UN3 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer EMB3**
+            EcranIMS.PutString .Cells(lignevar, 17).Value, 16, 21
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "EMB3 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer ETQ3**
+            EcranIMS.PutString .Cells(lignevar, 18).Value, 16, 45
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ETQ3 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer ARR4**
+            EcranIMS.PutString .Cells(lignevar, 19).Value, 18, 5
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "ARR4 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer UN4**
+            EcranIMS.PutString .Cells(lignevar, 20).Value, 18, 10
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "UN4 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer Emballage4**
+            EcranIMS.PutString .Cells(lignevar, 21).Value, 18, 21
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Emballage4 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+             ' **Entrer etiq4**
+            EcranIMS.PutString .Cells(lignevar, 22).Value, 18, 47
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "etiq4 envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+            
+            ' **Entrer C**
+            EcranIMS.PutString "c", 6, 8
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "C envoyé. Position du curseur : Ligne " & EcranIMS.Row & " Colonne " & EcranIMS.Col
+
+            ' Envoyer <Enter> pour valider l'entrée
+            EcranIMS.SendKeys "<Enter>"
+
+            ' Marquer la ligne comme traitée
+            .Cells(lignevar, 30) = "OK"
+
+            ' Passer à la ligne suivante
+            lignevar = lignevar + 1
+        Wend
+    End With
+
+    MsgBox "Fin du traitement."
+End Sub
+
+

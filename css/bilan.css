@@ -1,0 +1,199 @@
+/* Layout général */
+.container {
+   max-width: 1400px;
+   margin: 40px auto;
+   padding: 0 30px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.content-card {
+   width: 100%;
+   max-width: 1200px;
+}
+
+/* Structure d'alternance */
+.alternance-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 30px;
+   padding: 20px 0;
+}
+
+.periode {
+   background-color: rgba(57, 57, 96, 0.3);
+   padding: 20px;
+   border-radius: 10px;
+   border: 1px solid #f39c12;
+}
+
+.periode h4 {
+   color: #f39c12;
+   font-size: 1.1rem;
+   margin-bottom: 15px;
+   text-align: center;
+   text-transform: uppercase;
+}
+
+/* Styles spécifiques pour les modules du bilan */
+.bilan-module {
+   background-color: #2d2d44;
+   border: 3px solid #f39c12;
+   border-radius: 15px;
+   margin-bottom: 40px;
+   overflow: hidden;
+   transition: all 0.3s ease;
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+   width: 100%;
+}
+
+.bilan-header {
+   padding: 25px 30px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 30px;
+   background-color: #393960;
+   transition: background-color 0.3s ease;
+}
+
+.bilan-header:hover {
+   background-color: #444478;
+}
+
+.bilan-header img {
+   width: 200px;
+   height: 150px;
+   object-fit: cover;
+   border: 3px solid #f39c12;
+   border-radius: 12px;
+   transition: transform 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bilan-header:hover img {
+   transform: scale(1.05);
+}
+
+.bilan-title {
+   color: #f39c12;
+   font-size: 1.2rem;
+   margin: 0;
+   transition: color 0.3s ease;
+}
+
+.bilan-header:hover .bilan-title {
+   color: #ffb74d;
+}
+
+.bilan-content {
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.5s ease, padding 0.5s ease;
+   padding: 0 20px;
+}
+
+.bilan-content.active {
+   max-height: 1000px;
+   padding: 20px;
+}
+
+.bilan-text {
+   color: #f0f0c9;
+   line-height: 1.6;
+   margin-bottom: 15px;
+   opacity: 0;
+   transform: translateY(20px);
+   transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.bilan-content.active .bilan-text {
+   opacity: 1;
+   transform: translateY(0);
+}
+
+.competences-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 15px;
+   margin-top: 15px;
+   opacity: 0;
+   transform: translateY(20px);
+   transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+}
+
+.bilan-content.active .competences-list {
+   opacity: 1;
+   transform: translateY(0);
+}
+
+.competence-item {
+   background-color: #393960;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #f39c12;
+   text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.competence-item:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px rgba(243, 156, 18, 0.2);
+}
+
+.arrow-indicator {
+   margin-left: auto;
+   color: #f39c12;
+   transition: transform 0.3s ease;
+}
+
+.bilan-header.active .arrow-indicator {
+   transform: rotate(180deg);
+}
+
+/* Media Queries */
+/* Titre principal */
+.content-card > h2 {
+   font-size: 2rem;
+   text-align: center;
+   color: #f39c12;
+   margin-bottom: 40px;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+   .bilan-header {
+       flex-direction: column;
+       text-align: center;
+       padding: 15px;
+   }
+
+   .bilan-header img {
+       width: 80px;
+       height: 80px;
+   }
+
+   .arrow-indicator {
+       margin-top: 10px;
+       margin-left: 0;
+   }
+
+   .competences-list {
+       grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 480px) {
+   .bilan-title {
+       font-size: 1rem;
+   }
+
+   .bilan-text {
+       font-size: 0.9rem;
+   }
+
+   .competence-item {
+       font-size: 0.8rem;
+   }
+}

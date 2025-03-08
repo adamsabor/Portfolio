@@ -1,0 +1,113 @@
+Sub DDEIMP()
+    ' Initialiser et créer une connexion avec EXTRA System
+    Set Sys = Nothing
+    Set Sys = CreateObject("EXTRA.System")
+    
+    ' Vérifier si la connexion à EXTRA a réussi
+    If (Sys Is Nothing) Then
+        MsgBox "Impossible de créer l'objet du système EXTRA.", vbCritical
+        Exit Sub
+    End If
+    MsgBox "Connexion réussie à EXTRA."
+
+    ' Obtenir le nombre de sessions ouvertes
+    SessionCount = Sys.sessions.Count
+    MsgBox "Nombre de sessions trouvées: " & SessionCount
+
+    ' Parcourir les sessions disponibles pour trouver celle nommée "Cmc-A", "Cmc-B", ou "Tandem Cergy"
+    For i = 1 To SessionCount
+        Select Case Sys.sessions.Item(i).Name
+            Case "Cmc-A"
+                Set ims = Sys.sessions.Item(i)
+            Case "Cmc-B"
+                Set ims = Sys.sessions.Item(i)
+            Case "Tandem Cergy"
+                Set tdm = Sys.sessions.Item(i)
+        End Select
+    Next
+
+    ' Vérifier si la session IMS a été trouvée
+    If (ims Is Nothing) Or IsNull(ims) Then
+        MsgBox "Ne trouve pas CMC-B.", vbCritical
+        Exit Sub
+    End If
+    MsgBox "Connexion à IMS réussie."
+
+    ' Obtenir l'écran IMS de la session
+    Set EcranIMS = ims.screen
+    If IsNull(EcranIMS) Then
+        MsgBox "Impossible de créer l'objet Session IMS.", vbCritical
+        Exit Sub
+    End If
+    MsgBox "Accès à l'écran IMS obtenu."
+
+    ' Commencer à traiter les données de la feuille Excel
+    lignevar = 2
+    With ActiveWorkbook.Worksheets("SOURCE")
+        ' Boucle pour traiter chaque ligne de données tant que la cellule de référence n'est pas vide
+        While .Cells(lignevar, 1) <> ""
+            ' Accéder au menu principal avec la touche <Pf11>
+            EcranIMS.SendKeys "<Pf11>"
+           
+            MsgBox "Menu principal atteint."
+
+            ' Accéder à l'écran DDEIMP en envoyant la commande et en appuyant sur <Enter>
+            EcranIMS.SendKeys "ddeimp<Enter>"
+            ' Boucle pour vérifier que l'écran DDEIMP est chargé (ajuster la condition selon le texte exact qui apparaît)
+            While EcranIMS.getstring(1, 4, 3) <> "728"
+                Wend
+            Application.Wait (Now + TimeValue("0:00:01"))
+            MsgBox "Écran DDEIMP atteint."
+
+            ' Lire la référence depuis la feuille Excel
+            RefXL = .Cells(lignevar, 1)
+            MsgBox "Référence lue : " & RefXL
+
+            ' Si la référence est vide, quitter la boucle principale
+            If RefXL = "" Then
+                MsgBox "Référence vide. Fin de la macro."
+                GoTo fin
+            End If
+
+            ' Entrer la référence en ligne 7, colonne 21
+            While EcranIMS.Row <> 7 Or EcranIMS.Col <> 21
+                Wend
+            ' Envoyer la référence
+            EcranIMS.SendKeys RefXL
+            ' Appuyer sur <Enter> pour valider
+            EcranIMS.SendKeys "<Enter>"
+            MsgBox "Référence envoyée et validée."
+
+            ' Attendre que le curseur atteigne la position de la colonne 50
+            While EcranIMS.Row <> 7 Or EcranIMS.Col <> 50
+                Wend
+            ' Envoyer le texte "10" en ligne 7, colonne 50
+            EcranIMS.SendKeys "10"
+            MsgBox "Texte '10' envoyé à la position Ligne 7, Colonne 50."
+
+            ' Revenir au menu principal en appuyant sur <Enter>
+            EcranIMS.SendKeys "<Enter>"
+            ' Boucle pour vérifier que le retour au menu principal est bien effectué (ligne 4, colonne 10)
+            While EcranIMS.Row <> 5 Or EcranIMS.Col <> 11
+                Wend
+            MsgBox "Retour au menu principal."
+
+            ' Marquer le statut comme "OK" dans la colonne de statut
+            Sheets("SOURCE").Cells(lignevar, 32) = "OK"
+  
+refsuiv:
+            ' Condition de vérification d'erreur spécifique (ajuster selon le message exact reçu)
+            If EcranIMS.getstring(3, 2, 52) = "TACPHY -002- REFERENCE INCONNUE DANS LE DICTIONNAIRE" Then
+                Sheets("Source").Cells(lignevar, 27) = "No ok"
+            End If
+
+            ' Passer à la ligne suivante dans la feuille Excel
+            lignevar = lignevar + 1
+
+        Wend
+    End With
+fin:
+    ' Fin de la macro
+    MsgBox "Fin du traitement."
+End Sub
+

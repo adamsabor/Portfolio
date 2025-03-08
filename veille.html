@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - No Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/veille-technologique.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <div class="nav-profile">
+                <div class="profile-avatar-container">
+                    <a href="index.html" class="profile-link">
+                        
+                    </a>
+                </div>
+                <div class="profile-info">
+                    <h1>Sabor</h1>
+                    <p>Adam</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu">
+                <a href="index.html" class="menu-link">Accueil</a>
+                <a href="entreprise.html" class="menu-link">Entreprise</a>
+                <a href="réalisations.html" class="menu-link">Réalisations</a>
+                <a href="veille.html" class="menu-link">Veille technologique</a>
+                <a href="bilan.html" class="menu-link active">Bilan</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section de Veille Technologique -->
+    <main class="tech-watch">
+        <h2>Veille Technologique : Le No-Code</h2>
+
+        <!-- Résumé -->
+        <section class="summary">
+            <p>
+                J'ai choisi le No-Code comme thème de veille car il a été ma première introduction à la création de pages web. 
+                Cette veille de deux ans m'a permis d'explorer les outils et tendances du No-Code, tout en suivant l'intégration des solutions d'IA dans ce domaine en pleine évolution.
+            </p>
+            
+        
+        </section>
+        <h3>Outils de veille utilisé :</h3>
+        <img src="assets/x.webp" alt="imgveille" class="imgveille"> <img src="assets/feedly.png" alt="imgveille" class="imgveille">
+        
+        <!-- Section à ajouter après le résumé et avant les articles -->
+<section class="filters-section">
+    <div class="filters-container">
+        <div class="search-box">
+            <label for="search-input">Rechercher :</label>
+            <input type="text" id="search-input" placeholder="Rechercher un article...">
+        </div>
+        <div class="filter-box">
+            <label for="date-filter">Filtrer par date :</label>
+            <select id="date-filter">
+                <option value="all">Toutes les dates</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+        </div>
+        <div class="sort-box">
+            <label for="sort-select">Trier par :</label>
+            <select id="sort-select">
+                <option value="date-desc">Plus récents</option>
+                <option value="date-asc">Plus anciens</option>
+                <option value="note-desc">Note ↓</option>
+                <option value="note-asc">Note ↑</option>
+            </select>
+        </div>
+    </div>
+</section>
+        <!-- Articles de Veille -->
+        <div id="articles-container" class="articles-container">
+            <!-- Articles originaux (vos réalisations) -->
+            <div class="article-box" data-date="2024-01" data-note="3">
+                <img src="imgveille/hubspot.png" alt="Introduction au No-Code" class="article-image">
+                <h3>Janvier 2024 - Qu'est-ce que le No Code ?</h3>
+                <p>Résumé : Découvrez les bases du No-Code, ses concepts fondamentaux et ses premières applications.</p>
+                <a href="https://blog.hubspot.fr/website/no-code" target="_blank">Lire l'article complet</a>
+            </div>
+            <div class="article-box" data-date="2024-01" data-note="4">
+                <img src="imgveille/bubble.png" alt="Introduction au No-Code" class="article-image">
+                <h3>Mars 2024 - Comment créer sa première app nocode en 15 minutes avec Bubble.io ?</h3>
+                <p>Résumé : L'article aborde la création d'une première application no-code en 15 minutes en utilisant la plateforme Bubble.io, un outil puissant permettant de concevoir des applications web sans nécessiter de compétences en programmation.</p>
+                <a href="https://www.youtube.com/watch?v=i6IwvFislQY&ab_channel=theyo" target="_blank">Lire l'article complet</a>
+            </div>
+        
+
+            <div class="article-box" data-date="2024-12" data-note="4">
+                <img src="imgveille/no code agence.png" alt="Tendances du No-Code en 2024" class="article-image">
+                <h3>Décembre 2024 - Un avenir sans code ? Les tendances No-Code</h3>
+                <p>Résumé : Exploration des tendances émergentes du No-Code en 2024, avec un accent sur l'accessibilité et l'automatisation.</p>
+                <a href="https://www.agencenocode.com/blog/un-avenir-sans-code-les-tendances-du-no-code-en-2024" target="_blank">Lire l'article complet</a>
+            </div>
+            
+           
+            
+
+            <div class="article-box" data-date="2025-01" data-note="5">
+                <img src="imgveille/alexander.png" alt="Tendances No-Code 2024" class="article-image">
+                <h3>Janvier 2025 - Un avenir sans code ? Les tendances No-Code</h3>
+                <p>En 3 heures, Alexander Traykov a utilisé Cursor AI (soutenu par AnthropicAI) pour développer un canvas infini interactif avec :
+
+                    Zoom et glisser-déposer,
+                    Animation fluide au chargement,
+                    Effets interactifs </p>
+                <a href="https://x.com/alextraykov/status/1880694519169187859" target="_blank">Lire l'article complet</a>
+            </div>
+
+            <div class="article-box" data-date="2025-01" data-note="5">
+                <img src="imgveille/cmarix.png" alt="Low-Code vs No-Code" class="article-image">
+                <h3>Janvier 2025 - Low-Code vs No-Code : Quelle est la meilleure approche ?</h3>
+                <p> Une comparaison approfondie entre le Low-Code et le No-Code pour comprendre leurs différences et cas d'usage.</p>
+                <a href="https://www.cmarix.com/blog/low-code-vs-no-code/" target="_blank">Lire l'article complet</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/veille.js   "></script>
+</body>
+
+<script src="js/scripts.js"></script>
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2024 Adam SABOR</p>
+        <nav class="footer-nav">
+            <a href="mentionlegale.html">Mentions Légales</a>
+       
+        </nav>
+    </div>
+</footer>
+</html>

@@ -1,0 +1,126 @@
+
+Private Sub CommandButton1_Click()
+Dim Nom As String, cellule As String, REF As String, Qté As String, ILPN As String, Emplacement As String, Commentaire As String, Datee As Date
+
+' définition des variables
+Fiche = "Condit"
+Nom = NomRequete.Text
+On Error GoTo ErreurHandler1
+    cellule = ListBoxCellulePP.Value
+REF = RefRequete.Text
+Commentaire = CommentaireRequete.Text
+Datee = Now()
+
+        ' Ouverture du fichier de suivi des requêtes
+        Dim sFic As String, sPath As String, DLig As Long
+        
+        sPath = "https://grouperenault.sharepoint.com/sites/Exploitation-DOF/Documents%20partages/Méthodes%20et%20Aménagement/00-Puiseux/Demande%20et%20suivi%20des%20requêtes/"
+        sFic = "suivi des requêtes Puiseux.xlsm"
+        On Error GoTo ErreurHandler2
+        Set WbkAp = Workbooks.Open(sPath & sFic)
+        
+        ' Ouverture de la bonne feuille dans le fichier et enlèvement de tous les filtres présents
+        On Error GoTo ErreurHandler3
+        Application.Wait Now + TimeValue("00:00:03")
+        Worksheets("Requete 2024").Activate
+        EnleverTousLesFiltresSurFeuille ("Requete 2024")
+        
+        ' définition de la ligne où écrire les données dans le fichier de suivi
+        On Error GoTo ErreurHandler4
+        DLig = Cells(2, 2).End(xlDown).Row + 1
+        Do While IsEmpty(Cells(DLig + 1, 2)) <> True
+            DLig = Cells(DLig + 1, 2).End(xlDown).Row + 1
+        Loop
+        
+        ' Remplissage de la ligne avec les données
+        On Error GoTo ErreurHandler3
+        Worksheets("Requete 2024").Cells(DLig, 2).Value = Datee
+        Worksheets("Requete 2024").Cells(DLig, 2).NumberFormat = "dd.mm.yyyy hh:mm"
+        Worksheets("Requete 2024").Cells(DLig, 3).Value = Fiche
+        Worksheets("Requete 2024").Cells(DLig, 4).Value = cellule
+        Worksheets("Requete 2024").Cells(DLig, 5).Value = Nom
+        Worksheets("Requete 2024").Cells(DLig, 6).Value = REF
+        Worksheets("Requete 2024").Cells(DLig, 10).Value = Commentaire
+        
+        ' Sauvegarde et fermeture du fichier de suivi
+        Application.Wait Now + TimeValue("00:00:03")
+        ActiveWorkbook.Close SaveChanges:=True
+        UserFormManquant.Hide
+        Exit Sub
+
+ErreurHandler1:
+    MsgBox "Il faut sélectionner une cellule"
+Exit Sub
+
+ErreurHandler2:
+    
+Exit Sub
+
+ErreurHandler3:
+    
+Exit Sub
+
+ErreurHandler4:
+    
+Exit Sub
+
+End Sub
+
+Private Sub UserForm_Activate()
+
+End Sub
+Private Sub UserForm_Initialize()
+    With UserFormCondi.ListBoxCellulePP
+    .AddItem "Flow"
+    .AddItem "In/Out"
+    .AddItem "UET 121"
+    .AddItem "UET 122"
+    .AddItem "UET 123"
+    .AddItem "UET 351"
+    .AddItem "UET 352"
+    .AddItem "UET 353"
+    .AddItem "UET 671"
+    .AddItem "UET 672"
+    .AddItem "UET 673"
+    .AddItem "UET 891"
+    .AddItem "UET 892"
+    .AddItem "UET 893"
+    .AddItem "UET 111"
+    .AddItem "UET 112"
+    .AddItem "UET SD"
+    .AddItem "CONDIT_1"
+    .AddItem "CONDIT_2"
+    .AddItem "PVI"
+    .AddItem "QUALITE"
+    End With
+End Sub
+
+
+Function EnleverTousLesFiltresSurFeuille(nomFeuille As String) As Boolean
+    Dim feuille As Worksheet
+    Dim plage As Range
+    
+    On Error Resume Next
+    Set feuille = ThisWorkbook.Sheets(nomFeuille)
+    On Error GoTo 0
+    
+    If feuille Is Nothing Then
+        ' La feuille spécifiée n'a pas été trouvée
+        EnleverTousLesFiltresSurFeuille = False
+        Exit Function
+    End If
+    
+    ' Activez la feuille
+    feuille.Activate
+    
+    ' Spécifiez la plage sur laquelle vous souhaitez enlever les filtres
+    Set plage = feuille.UsedRange
+    
+    ' Vérifiez si des filtres sont appliqués sur la plage
+     If plage.AutoFilterMode Then
+        ' Enlevez les filtres
+        plage.AutoFilterMode = False
+    End If
+    
+    EnleverTousLesFiltresSurFeuille = True
+End Function

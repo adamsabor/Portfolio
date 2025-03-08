@@ -1,0 +1,385 @@
+Sub TraiterDonneesIMS()
+    Dim Sys As Object, ims As Object, EcranIMS As Object
+    Dim lignevar As Integer
+    Dim RefXL As String
+    Dim MenuPrincipalOk As Boolean
+
+    On Error GoTo ErreurGenerale ' Gestion d'erreurs générale
+
+    ' 1. Connexion à IMS
+    Set Sys = CreateObject("EXTRA.System")
+    If Sys Is Nothing Then
+        MsgBox "Impossible de créer l'objet du système EXTRA.", vbCritical
+        Exit Sub
+    End If
+
+    ' 2. Obtenir la session IMS active
+    Set ims = GetIMSSession(Sys)
+    If ims Is Nothing Then
+        MsgBox "Session IMS non trouvée.", vbCritical
+        Exit Sub
+    End If
+
+    ' 3. Accéder à l'écran IMS
+    Set EcranIMS = ims.screen
+    If EcranIMS Is Nothing Then
+        MsgBox "Impossible d'accéder à l'écran IMS.", vbCritical
+        Exit Sub
+    End If
+
+    ' 4. Traiter toutes les lignes dans la feuille Excel pour CESP, CPHY, et DDEIMP
+    lignevar = 2 ' Commence à la ligne 2 (première ligne de données)
+    With ActiveWorkbook.Worksheets("SOURCE")
+        While .Cells(lignevar, 1) <> ""  ' Boucle tant qu'il y a des références (colonne A non vide)
+            RefXL = .Cells(lignevar, 1)  ' Lire la référence (colonne A)
+
+            ' 5. Traiter CESP
+            If Not GérerCESP(EcranIMS, .Rows(lignevar)) Then
+                ' Si erreur, marquer "NOK" pour CESP
+                .Cells(lignevar, "Statut CESP").Value = "NOK"
+            Else
+                ' Si succès, marquer "OK" pour CESP
+                .Cells(lignevar, "Statut CESP").Value = "OK"
+                ' Retourner au menu principal après avoir rempli CESP
+                RetourAuMenuPrincipal EcranIMS
+            End If
+
+            ' 6. Traiter CPHY
+            If Not GérerCPHY(EcranIMS, .Rows(lignevar)) Then
+                ' Si erreur, marquer "NOK" pour CPHY
+                .Cells(lignevar, "Statut CPHY").Value = "NOK"
+            Else
+                ' Si succès, marquer "OK" pour CPHY
+                .Cells(lignevar, "Statut CPHY").Value = "OK"
+                ' Retourner au menu principal après avoir rempli CPHY
+                RetourAuMenuPrincipal EcranIMS
+            End If
+
+            ' 7. Traiter DDEIMP
+            If Not GérerDDEIMP(EcranIMS, .Rows(lignevar)) Then
+                ' Si erreur, marquer "NOK" pour DDEIMP
+                .Cells(lignevar, "Statut DDEIMP").Value = "NOK"
+            Else
+                ' Si succès, marquer "OK" pour DDEIMP
+                .Cells(lignevar, "Statut DDEIMP").Value = "OK"
+            End If
+
+            ' 8. Passer à la ligne suivante
+            lignevar = lignevar + 1
+        Wend
+    End With
+
+    ' 9. Indiquer que le traitement est terminé
+    MsgBox "Traitement terminé pour toutes les lignes."
+
+    Exit Sub
+
+ErreurGenerale:
+    MsgBox "Erreur générale au niveau de la ligne " & lignevar & ": " & Err.Description, vbCritical
+    Resume Next
+
+End Sub
+
+
+
+' Fonction pour gérer le remplissage des champs CESP dans IMS
+Function GérerCESP(EcranIMS As Object, rowData As Range) As Boolean
+    On Error GoTo ErreurCESP
+
+    ' 1. Aller au menu principal IMS
+    EcranIMS.SendKeys "<Pf11>"
+    While EcranIMS.Row <> 4 Or EcranIMS.Col <> 10
+        Wend
+    
+    ' 2. Aller au menu CESP dans IMS
+    EcranIMS.SendKeys "CESP<Enter>"
+    While EcranIMS.getstring(1, 4, 6) <> "MACESP"
+        Wend
+    Application.Wait (Now + TimeValue("0:00:02"))  ' Attendre 2 secondes pour laisser IMS se stabiliser
+
+    ' 3. Envoyer la Référence (colonne A dans Excel)
+    EcranIMS.SendKeys rowData.Cells(1).Value
+
+    ' 4. Valider la saisie de la Référence avec "Enter"
+    EcranIMS.SendKeys "<Enter>"
+
+    ' 5. Attendre que le curseur se positionne correctement après validation
+    Application.Wait (Now + TimeValue("0:00:02"))
+    While EcranIMS.Row <> 6 Or EcranIMS.Col <> 24
+        Wend
+
+    ' Envoyer Magasin (colonne B dans Excel)
+    EcranIMS.SendKeys rowData.Cells(2).Value
+    While EcranIMS.Row <> 7 Or EcranIMS.Col <> 24
+    Wend
+
+    ' Envoyer Créer (colonne C)
+    EcranIMS.SendKeys rowData.Cells(3).Value
+    While EcranIMS.Row <> 6 Or EcranIMS.Col <> 8
+    Wend
+
+    ' Envoyer Valide du (colonne D)
+    EcranIMS.SendKeys rowData.Cells(4).Value
+    While EcranIMS.Row <> 9 Or EcranIMS.Col <> 14
+    Wend
+
+    ' Envoyer Au (colonne E)
+    EcranIMS.SendKeys rowData.Cells(5).Value
+    While EcranIMS.Row <> 9 Or EcranIMS.Col <> 32
+    Wend
+
+    ' Envoyer Date Appli RCF (colonne F)
+    EcranIMS.SendKeys rowData.Cells(6).Value
+    While EcranIMS.Row <> 9 Or EcranIMS.Col <> 65
+    Wend
+
+    ' Envoyer TYESP1 (colonne G)
+    EcranIMS.SendKeys rowData.Cells(7).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Envoyer ETIQESP1 (colonne H)
+    EcranIMS.SendKeys rowData.Cells(8).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 47
+    Wend
+
+    ' Envoyer GRAFESP1 (colonne I)
+    EcranIMS.SendKeys rowData.Cells(9).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 65
+    Wend
+
+    
+
+    ' Envoyer ARRESP2 (colonne K)
+    EcranIMS.SendKeys rowData.Cells(11).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 5
+    Wend
+
+    ' Envoyer QTESP2 (colonne L)
+    EcranIMS.SendKeys rowData.Cells(12).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 10
+    Wend
+
+    ' Envoyer TYESP2 (colonne M)
+    EcranIMS.SendKeys rowData.Cells(13).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Envoyer ETIQESP2 (colonne N)
+    EcranIMS.SendKeys rowData.Cells(14).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 47
+    Wend
+
+    ' Envoyer GRAFESP2 (colonne O)
+    EcranIMS.SendKeys rowData.Cells(15).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 65
+    Wend
+
+
+    ' Envoyer ARRESP3 (colonne Q)
+    EcranIMS.SendKeys rowData.Cells(17).Value
+    While EcranIMS.Row <> 16 Or EcranIMS.Col <> 5
+    Wend
+
+    ' Envoyer QTESP3 (colonne R)
+    EcranIMS.SendKeys rowData.Cells(18).Value
+    While EcranIMS.Row <> 16 Or EcranIMS.Col <> 10
+    Wend
+
+    ' Envoyer TYESP3 (colonne S)
+    EcranIMS.SendKeys rowData.Cells(19).Value
+    While EcranIMS.Row <> 16 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Envoyer ETIQESP3 (colonne T)
+    EcranIMS.SendKeys rowData.Cells(20).Value
+    While EcranIMS.Row <> 17 Or EcranIMS.Col <> 47
+    Wend
+
+    
+  
+
+    ' Envoyer ARRESP4 (colonne V)
+    EcranIMS.SendKeys rowData.Cells(22).Value
+    While EcranIMS.Row <> 18 Or EcranIMS.Col <> 5
+    Wend
+
+    ' Envoyer QTESP4 (colonne W)
+    EcranIMS.SendKeys rowData.Cells(23).Value
+    While EcranIMS.Row <> 18 Or EcranIMS.Col <> 10
+    Wend
+
+    ' Envoyer TYESP4 (colonne X)
+    EcranIMS.SendKeys rowData.Cells(24).Value
+    While EcranIMS.Row <> 18 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Envoyer ETIQESP4 (colonne Y)
+    EcranIMS.SendKeys rowData.Cells(25).Value
+    While EcranIMS.Row <> 19 Or EcranIMS.Col <> 47
+    Wend
+
+    
+
+    ' Valider l'entrée
+    EcranIMS.SendKeys "<Enter>"
+    Application.Wait (Now + TimeValue("0:00:01"))
+    GérerCESP = True
+    Exit Function
+
+ErreurCESP:
+    MsgBox "Erreur CESP : " & Err.Description
+    GérerCESP = False
+End Function
+
+' Fonction pour gérer le remplissage des champs CPHY dans IMS
+Function GérerCPHY(EcranIMS As Object, rowData As Range) As Boolean
+    On Error GoTo ErreurCPHY
+
+    ' Aller au menu principal IMS
+    EcranIMS.SendKeys "<Pf11>"
+    While EcranIMS.Row <> 4 Or EcranIMS.Col <> 10
+    Wend
+
+    ' Aller au menu CPHY dans IMS
+    EcranIMS.SendKeys "CPHY<Enter>"
+    While EcranIMS.getstring(1, 4, 6) <> "MACPHY"
+    Wend
+    Application.Wait (Now + TimeValue("0:00:01"))
+
+   ' Envoyer la Référence (colonne A dans Excel)
+    EcranIMS.SendKeys rowData.Cells(1).Value
+
+    ' Attendre que le curseur soit bien positionné à la ligne 6, colonne 24
+    While EcranIMS.Row <> 6 Or EcranIMS.Col <> 21
+        Wend
+
+    ' Valider la saisie de la Référence avec "Enter"
+    EcranIMS.SendKeys "<Enter>"
+
+    ' Attendre un court délai après avoir envoyé "Enter"
+    Application.Wait (Now + TimeValue("0:00:01"))
+
+    ' Envoyer Longueur (colonne AA)
+    EcranIMS.SendKeys rowData.Cells(27).Value
+    While EcranIMS.Row <> 13 Or EcranIMS.Col <> 16
+    Wend
+
+    ' Envoyer Largeur (colonne AB)
+    EcranIMS.SendKeys rowData.Cells(28).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 16
+    Wend
+
+    ' Envoyer Hauteur (colonne AC)
+    EcranIMS.SendKeys rowData.Cells(29).Value
+    While EcranIMS.Row <> 14 Or EcranIMS.Col <> 16
+    Wend
+
+    ' Envoyer Poids (colonne AD)
+    EcranIMS.SendKeys rowData.Cells(30).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 61
+    Wend
+
+    ' Envoyer Volume (colonne AE)
+    EcranIMS.SendKeys rowData.Cells(31).Value
+    While EcranIMS.Row <> 12 Or EcranIMS.Col <> 36
+    Wend
+
+    ' Envoyer Dlu (colonne AF)
+    EcranIMS.SendKeys rowData.Cells(32).Value
+    While EcranIMS.Row <> 15 Or EcranIMS.Col <> 16
+    Wend
+    
+     ' Envoyer code pays (colonne AG)
+    EcranIMS.SendKeys rowData.Cells(33).Value
+    While EcranIMS.Row <> 10 Or EcranIMS.Col <> 67
+    Wend
+
+
+    ' Valider l'entrée
+    EcranIMS.SendKeys "<Enter>"
+    Application.Wait (Now + TimeValue("0:00:01"))
+    GérerCPHY = True
+    Exit Function
+
+ErreurCPHY:
+    MsgBox "Erreur CPHY : " & Err.Description
+    GérerCPHY = False
+End Function
+
+' Fonction pour gérer le remplissage des champs DDEIMP dans IMS
+Function GérerDDEIMP(EcranIMS As Object, rowData As Range) As Boolean
+    On Error GoTo ErreurDDEIMP
+
+    ' Aller au menu principal IMS
+    EcranIMS.SendKeys "<Pf11>"
+    While EcranIMS.Row <> 5 Or EcranIMS.Col <> 11
+    Wend
+
+    ' Aller au menu DDEIMP
+    EcranIMS.SendKeys "DDEIMP"
+    EcranIMS.SendKeys "<Enter>"
+
+    ' Attendre que le curseur se positionne sur le champ de Référence (ligne 7, colonne 21)
+    While EcranIMS.Row <> 7 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Envoyer la Référence (colonne A dans Excel) à la ligne 7, colonne 21
+    EcranIMS.SendKeys rowData.Cells(1).Value
+    EcranIMS.SendKeys "<Enter>"  ' Valider la saisie de la référence
+
+    ' Attendre que le curseur se positionne correctement
+    While EcranIMS.Row <> 7 Or EcranIMS.Col <> 21
+    Wend
+
+    ' Écrire "10" systématiquement à la ligne 3, colonne 8
+    While EcranIMS.Row <> 3 Or EcranIMS.Col <> 8
+    Wend
+    EcranIMS.SendKeys "10"
+
+    ' Valider l'entrée
+    EcranIMS.SendKeys "<Enter>"
+    EcranIMS.SendKeys "<Pf6>"  ' Aller à l'étape suivante
+    EcranIMS.SendKeys "<Tab>"  ' Se déplacer vers le champ suivant
+
+    GérerDDEIMP = True
+    Exit Function
+
+ErreurDDEIMP:
+    MsgBox "Erreur DDEIMP : " & Err.Description
+    GérerDDEIMP = False
+End Function
+
+' Fonction pour retourner au menu principal
+Function RetourAuMenuPrincipal(EcranIMS As Object) As Boolean
+    EcranIMS.SendKeys "<Pf11>"
+    While EcranIMS.Row <> 4 Or EcranIMS.Col <> 10
+        ' Attendre que l'écran du menu principal soit prêt
+    Wend
+    RetourAuMenuPrincipal = True
+End Function
+
+' Fonction pour obtenir la session IMS active
+Function GetIMSSession(Sys As Object) As Object
+    On Error GoTo ErreurSession
+
+    Dim SessionCount As Integer, i As Integer
+    SessionCount = Sys.sessions.Count
+    For i = 1 To SessionCount
+        If Sys.sessions.Item(i).Name = "Cmc-A" Or Sys.sessions.Item(i).Name = "Cmc-B" Then
+            Set GetIMSSession = Sys.sessions.Item(i)
+            Exit Function
+        End If
+    Next i
+    
+    ' Si aucune session valide n'est trouvée
+    Set GetIMSSession = Nothing
+    MsgBox "Aucune session IMS valide trouvée."
+    Exit Function
+
+ErreurSession:
+    MsgBox "Erreur lors de la recherche de session IMS: " & Err.Description, vbCritical
+    Set GetIMSSession = Nothing
+    Resume Next
+End Function
+

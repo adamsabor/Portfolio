@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisations Scolaires - Rétro Gaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/realisations.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <div class="nav-profile">
+                <div class="profile-avatar-container">
+                    <a href="index.html" class="profile-link">
+                        
+                    </a>
+                </div>
+                <div class="profile-info">
+                    <h1>Sabor</h1>
+                    <p>Adam</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu">
+                <a href="index.html" class="menu-link">Accueil</a>
+                <a href="entreprise.html" class="menu-link">Entreprise</a>
+                <a href="réalisations.html" class="menu-link">Réalisations</a>
+                <a href="veille.html" class="menu-link">Veille technologique</a>
+                <a href="bilan.html" class="menu-link active">Bilan</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h2 class="page-title">Mes Réalisations Scolaires</h2>
+
+        <!-- Section de filtrage -->
+        <div class="filter-section">
+            <button class="filter-button active" data-rating="all">Tous les projets</button>
+            <button class="filter-button" data-rating="5">⭐️⭐️⭐️⭐️⭐️</button>
+            <button class="filter-button" data-rating="4">⭐️⭐️⭐️⭐️</button>
+            <button class="filter-button" data-rating="3">⭐️⭐️⭐️</button>
+        </div>  
+
+        <div class="articles-grid">
+            <a href="realisationst/scolaires/texteadventure.html" class="realisation-article" data-rating="4">
+                <img src="images/jeutp.webp" alt="Text Adventure" class="realisation-image">
+                <h3>Text Adventure</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 1 semaine</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+
+            <a href="realisationst/scolaires/joticket.html" class="realisation-article" data-rating="4">
+                <img src="images/JOtp.webp" alt="JO Tickets" class="realisation-image">
+                <h3>JO Tickets</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 2 semaine</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+
+            <a href="realisationst/scolaires/journal.html" class="realisation-article" data-rating="3">
+                <img src="images/Tpjournal.webp" alt="Journal" class="realisation-image">
+                <h3>Journal</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 2 semaine</span>
+                    <span class="rating-icon">⭐️⭐️⭐️</span>
+                </div>
+            </a>
+            
+            
+            
+            <a href="realisationst/scolaires/jojolegion.html" class="realisation-article" data-rating="5">
+                <img src="images/jojolegion.webp" alt="jojolegion" class="realisation-image">
+                <h3>jojolegion</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 1 mois</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+            <a href="realisationst/scolaires/jojolegion.html" class="realisation-article" data-rating="5">
+                <img src="images/jojolegion.webp" alt="jojolegion" class="realisation-image">
+                <h3>Nimbus Railway</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 1 mois</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+            <a href="realisationst/scolaires/jojolegion.html" class="realisation-article" data-rating="5">
+                <img src="images/jojolegion.webp" alt="jojolegion" class="realisation-image">
+                <h3>Gest EPI</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 1 mois</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+            <a href="realisationst/scolaires/jojolegion.html" class="realisation-article" data-rating="5">
+                <img src="images/jojolegion.webp" alt="jojolegion" class="realisation-image">
+                <h3>jojolegion</h3>
+                <div class="realisation-info">
+                    <span class="duration-icon">⌚ Durée: 1 mois</span>
+                    <span class="rating-icon">⭐️⭐️⭐️⭐️⭐️</span>
+                </div>
+            </a>
+            <div class="ia-info-badge">
+                <div class="ia-info-content">
+                    <h4 class="ia-info-title">Images générées par IA</h4>
+                    <p class="ia-info-text">Images créées avec DALL-E • Prompts optimisés par GPT-4</p>
+                </div>
+        </div>
+    </main>
+
+    <footer>
+        
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const articles = document.querySelectorAll('.realisation-article');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Retirer la classe active de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    button.classList.add('active');
+
+                    const selectedRating = button.getAttribute('data-rating');
+
+                    articles.forEach(article => {
+                        if (selectedRating === 'all') {
+                            article.classList.remove('hidden');
+                        } else {
+                            const articleRating = article.getAttribute('data-rating');
+                            if (articleRating === selectedRating) {
+                                article.classList.remove('hidden');
+                            } else {
+                                article.classList.add('hidden');
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+<script src="js/scripts.js"></script>
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2024 Adam SABOR</p>
+        <nav class="footer-nav">
+            <a href="mentionlegale.html">Mentions Légales</a>
+       
+        </nav>
+    </div>
+</footer>
+</html>
