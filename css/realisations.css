@@ -79,13 +79,14 @@
     background-color: #222;
     color: #f39c12;
     border: 2px solid #f39c12;
-    padding: 8px 16px;
-    margin: 0 8px;
+    padding: 12px 20px;
+    margin: 0 8px 8px;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
+    font-size: 11px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .filter-button:hover,
@@ -97,8 +98,9 @@
 
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
 .realisation-article {
@@ -173,13 +175,17 @@
     }
 
     .filter-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
         padding: 15px;
     }
 
     .filter-button {
-        margin: 5px;
-        font-size: 10px;
-        padding: 6px 12px;
+        font-size: 9px;
+        padding: 8px 16px;
+        margin: 4px;
     }
 }
 
@@ -199,6 +205,13 @@
         gap: 10px;
     }
 }
+
+@media (max-width: 767px) {
+    .filter-button {
+        width: 100%;
+    }
+}
+
 .ia-info-badge {
     position: fixed;
     bottom: 30px;

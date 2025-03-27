@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renault DLPA Puiseux</title>
+    <link rel="icon" type="image/webp" href="iconenav/entreprise.webp" />
+
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/entreprise.css">
     <link rel="stylesheet" href="css/style.css">
@@ -32,14 +34,21 @@
             <nav class="nav-menu">
                 <a href="index.html" class="menu-link">Accueil</a>
                 <a href="entreprise.html" class="menu-link">Entreprise</a>
-                <a href="réalisations.html" class="menu-link">Réalisations</a>
+                <div class="dropdown">
+                    <a href="#" class="menu-link">Réalisations</a>
+                    <div class="dropdown-content">
+                        <a href="réalisationsscolaire.html">Réalisations Scolaires</a>
+                        <a href="réalisationsentreprise.html">Réalisations Professionnelles</a>
+                    </div>
+                </div>
                 <a href="veille.html" class="menu-link">Veille technologique</a>
-                <a href="bilan.html" class="menu-link active">Bilan</a>
+                <a href="bilan.html" class="menu-link">Bilan</a>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- Section Hero avec effet parallaxe -->
         <section class="hero">
             <div class="hero-content">
                 <h1 class="glitch-logo">Renault DLPA</h1>
@@ -47,38 +56,42 @@
             </div> 
             <img src="entreprise img/entreprise.jpeg" alt="Site Renault DLPA" class="hero-image">
         </section>
-        <h2>
-            <i class="material-icons career-icon">work_history</i>
-            Présentation de Renault DLPA
-        </h2>
-        <section class="presentation-section">
-            <div class="section-content">
-               
-                <ul>
-                    <li><strong>Renault :</strong> Fondée au 19ᵉ siècle, leader de l'innovation automobile.</li>
-                    <li><strong>Présence :</strong> Plus de 120 pays.</li>
-                    <li><strong>DLPA (Direction Logistique Pièces et Accessoires) :</strong> Gestion des pièces de rechange.</li>
-                    <li><strong>Objectifs DLPA :</strong>
-                        <ul>
-                            <li>Flux logistiques optimisés.</li>
-                            <li>Stratégies de stockage avancées.</li>
-                            <li>Distribution efficace des commandes.</li>
-                        </ul>
-                    </l
+
+        <!-- Section Présentation -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">work_history</i>
+                <h2>Présentation de Renault DLPA</h2>
+            </div>
+            <div class="presentation-section">
+                <div class="section-content">
+                    <ul class="feature-list">
+                        <li><strong>Renault :</strong> Fondée au 19ᵉ siècle, leader de l'innovation automobile.</li>
+                        <li><strong>Présence :</strong> Plus de 120 pays.</li>
+                        <li><strong>DLPA (Direction Logistique Pièces et Accessoires) :</strong> Gestion des pièces de rechange.</li>
+                        <li><strong>Objectifs DLPA :</strong>
+                            <ul>
+                                <li>Flux logistiques optimisés.</li>
+                                <li>Stratégies de stockage avancées.</li>
+                                <li>Distribution efficace des commandes.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
-        <h2>
-            <i class="material-icons career-icon">work_history</i>
-            Ma premiere experience chez renault
-        </h2>
-        <section class="presentation-section">
-            
-            <div class="section-content">
-                
-                <div class="presentation-grid">
-                    <div class="presentation-card">
+
+        <!-- Section Expérience -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">work_history</i>
+                <h2>Ma première expérience chez Renault</h2>
+            </div>
+            <div class="presentation-section">
+                <div class="section-content">
+                    <div class="experience-card">
+                        <i class="material-icons experience-icon">trending_up</i>
                         <p>
-                            <i class="material-icons experience-icon">trending_up</i>
                             Initialement recruté comme intérimaire, mes compétences techniques et ma compréhension des enjeux métiers ont rapidement été remarquées.
                         </p>
                     </div>
@@ -86,9 +99,13 @@
             </div>
         </section>
 
-        <h2>Pôle Performance</h2>
-            <div class="performance-details">
-                
+        <!-- Section Performance -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">speed</i>
+                <h2>Pôle Performance</h2>
+            </div>
+            <div class="performance-section">
                 <ul class="key-points-list">
                     <li>Le pôle performance optimise les processus logistiques pour améliorer l'efficacité de l'entrepôt</li>
                     <li>Nous développons et testons de nouvelles méthodes de travail directement sur le terrain</li>
@@ -96,20 +113,21 @@
             </div>
         </section>
 
-        <section class="role-section">
-            <div class="section-content">
-                <h2>
-                    <i class="material-icons ecosystem-icon">hub</i>
-                    Mon ecosysteme chez Renault
-                </h2>
+        <!-- Section Écosystème -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">hub</i>
+                <h2>Mon écosystème chez Renault</h2>
+            </div>
+            <div class="ecosystem-section">
                 <button class="org-btn" id="orgButton">
                     <i class="material-icons org-icon">account_tree</i>
                     Voir l'organigramme
                 </button>
-                <p>
+                <div class="ecosystem-intro">
                     <i class="material-icons connect-icon">compare_arrows</i>
-                    Interface entre équipes IT et métiers, j'assure le lien entre:
-                </p>
+                    <p>Interface entre équipes IT et métiers, j'assure le lien entre:</p>
+                </div>
                 <div class="role-cards">
                     <div class="card">
                         <h3>
@@ -137,137 +155,170 @@
             </div>
         </section>
         
-        <section class="tech-section">
-            <h2>
-                <i class="material-icons tech-main-icon">devices_other</i>
-                Outils informatiques
-            </h2>
+        <!-- Section Outils -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">devices_other</i>
+                <h2>Outils informatiques</h2>
+            </div>
             <div class="tech-grid">
                 <div class="tech-card">
-                    <img src="entreprise img/build-tibco-spotfire-dashboard.jpg" alt="Spotfire">
-                    <h3>
-                        <i class="material-icons tech-icon">analytics</i>
-                        Spotfire
-                    </h3>
-                    <p>
-                        <i class="material-icons tech-detail-icon">trending_up</i>
-                        Analyse KPI et performances sous forme de dashboard
-                    </p>
+                    <div class="tech-image-container">
+                        <img src="entreprise img/build-tibco-spotfire-dashboard.jpg" alt="Spotfire">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">analytics</i>
+                            Spotfire
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">trending_up</i>
+                            Analyse KPI et performances sous forme de dashboard
+                        </p>
+                    </div>
                 </div>
                 <div class="tech-card">
-                    <img src="entreprise img/excel vba.png" alt="VBA Excel">
-                    <h3>
-                        <i class="material-icons tech-icon">functions</i>
-                        VBA Excel
-                    </h3>
-                    <p>
-                        <i class="material-icons tech-detail-icon">autorenew</i>
-                        Innovation et automatisation sur nos process
-                    </p>
+                    <div class="tech-image-container">
+                        <img src="entreprise img/excel vba.png" alt="VBA Excel">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">functions</i>
+                            VBA Excel
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">autorenew</i>
+                            Innovation et automatisation sur nos process
+                        </p>
+                    </div>
                 </div>
                 <div class="tech-card">
-                    <img src="entreprise img/Manhattan-Associates-Inc.-logo.jpg" alt="WMS">
-                    <h3>
-                        <i class="material-icons tech-icon">inventory</i>
-                        WMS
-                    </h3>
-                    <p>
-                        <i class="material-icons tech-detail-icon">local_shipping</i>
-                        gérer et optimiser les opérations de l'entrepôt
-                    </p>
+                    <div class="tech-image-container">
+                        <img src="entreprise img/Manhattan-Associates-Inc.-logo.jpg" alt="WMS">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">inventory</i>
+                            WMS
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">local_shipping</i>
+                            gérer et optimiser les opérations de l'entrepôt
+                        </p>
+                    </div>
                 </div>
                 <div class="tech-card">
-                    <img src="entreprise img/python.png" alt="Python">
-                    <h3>
-                        <i class="material-icons tech-icon">code</i>
-                        Python
-                    </h3>
-                    <p>
-                       
-                        automatisation
-                    </p>
-                 </div>
-                 <div class="tech-card">
-                    <img src="entreprise img/sci.png" alt="SCI">
-                    <h3>
-                        <i class="material-icons tech-icon">code</i>
-                        SCI
-                    </h3>
-                    <p>
-                        <i class="material-icons tech-detail-icon">terminal</i>
-                        Accès aux données en temps réel
-                    </p>
+                    <div class="tech-image-container">
+                        <img src="entreprise img/python.png" alt="Python">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">code</i>
+                            Python
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">settings_suggest</i>
+                            automatisation
+                        </p>
+                    </div>
                 </div>
                 <div class="tech-card">
-                    <img src="entreprise img/Reflection-1-4.jpg" alt="Reflection IMS">
-                    <h3>
-                        <i class="material-icons tech-icon">code</i>
-                        Reflection IMS
-                    </h3>
-                    <p>
-                        <i class="material-icons tech-detail-icon">terminal</i>
-                        Implantation des références dans la couche interne du magasin
-                    </p>
+                    <div class="tech-image-container">
+                        <img src="entreprise img/sci.png" alt="SCI">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">code</i>
+                            SCI
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">terminal</i>
+                            Accès aux données en temps réel
+                        </p>
+                    </div>
                 </div>
+                <div class="tech-card">
+                    <div class="tech-image-container">
+                        <img src="entreprise img/Reflection-1-4.jpg" alt="Reflection IMS">
+                    </div>
+                    <div class="tech-content">
+                        <h3>
+                            <i class="material-icons tech-icon">code</i>
+                            Reflection IMS
+                        </h3>
+                        <p>
+                            <i class="material-icons tech-detail-icon">terminal</i>
+                            Implantation des références dans la couche interne du magasin
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <section class="missions-section">
-            <h2>
-                <i class="material-icons mission-main-icon">assignment</i>
-                Missions 
-            </h2>
+        <!-- Section Missions -->
+        <section class="container">
+            <div class="section-header">
+                <i class="material-icons section-icon">assignment</i>
+                <h2>Missions</h2>
+            </div>
             <div class="missions-grid">
                 <div class="mission-card">
-                    <h3>
-                        <i class="material-icons mission-icon">settings_suggest</i>
-                        Automatisation
-                    </h3>
-                    <p>Optimisation des processus quotidiens.</p>
+                    <i class="material-icons mission-icon">settings_suggest</i>
+                    <div class="mission-content">
+                        <h3>Automatisation</h3>
+                        <p>Optimisation des processus quotidiens.</p>
+                    </div>
                 </div>
                 <div class="mission-card">
-                    <h3>
-                        <i class="material-icons mission-icon">speed</i>
-                        Performance
-                    </h3>
-                    <p>Analyse et suivi des KPIs.</p>
+                    <i class="material-icons mission-icon">speed</i>
+                    <div class="mission-content">
+                        <h3>Performance</h3>
+                        <p>Analyse et suivi des KPIs.</p>
+                    </div>
                 </div>
                 <div class="mission-card">
-                    <h3>
-                        <i class="material-icons mission-icon">lightbulb</i>
-                        Innovation
-                    </h3>
-                    <p>Développement de solutions logistiques.</p>
+                    <i class="material-icons mission-icon">lightbulb</i>
+                    <div class="mission-content">
+                        <h3>Innovation</h3>
+                        <p>Développement de solutions logistiques.</p>
+                    </div>
                 </div>
                 <div class="mission-card">
-                    <h3>
-                        <i class="material-icons mission-icon">school</i>
-                        Formation
-                    </h3>
-                    <p>Support et documentation technique.</p>
+                    <i class="material-icons mission-icon">school</i>
+                    <div class="mission-content">
+                        <h3>Formation</h3>
+                        <p>Support et documentation technique.</p>
+                    </div>
                 </div>
             </div>
-           
+        </section>
 
-    <div id="modal-org" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <img src="entreprise img/Organigramme_04-11-2024_Page_1.webp" alt="Organigramme">
+        <!-- Modal Organigramme -->
+        <div id="modal-org" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="modal-image-container">
+                    <img src="entreprise img/Organigramme_04-11-2024_Page_1.webp" alt="Organigramme">
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn zoom-in">+</button>
+                    <button class="zoom-btn zoom-out">-</button>
+                    <button class="zoom-btn zoom-reset">R</button>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2024 Adam SABOR</p>
+            <nav class="footer-nav">
+                <a href="mentionlegale.html">Mentions Légales</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="js/entreprise.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
-
-<script src="js/scripts.js"></script>
-<footer class="footer">
-    <div class="footer-content">
-        <p>© 2024 Adam SABOR</p>
-        <nav class="footer-nav">
-            <a href="mentionlegale.html">Mentions Légales</a>
-       
-        </nav>
-    </div>
-</footer>
 </html>

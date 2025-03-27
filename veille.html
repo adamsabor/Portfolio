@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/veille-technologique.css">
+    <link rel="icon" type="image/webp" href="iconenav/veille.webp" />
 </head>
 <body>
     <!-- Header -->
@@ -32,9 +33,15 @@
             <nav class="nav-menu">
                 <a href="index.html" class="menu-link">Accueil</a>
                 <a href="entreprise.html" class="menu-link">Entreprise</a>
-                <a href="réalisations.html" class="menu-link">Réalisations</a>
+                <div class="dropdown">
+                    <a href="#" class="menu-link">Réalisations</a>
+                    <div class="dropdown-content">
+                        <a href="réalisationsscolaire.html">Réalisations Scolaires</a>
+                        <a href="réalisationsentreprise.html">Réalisations Professionnelles</a>
+                    </div>
+                </div>
                 <a href="veille.html" class="menu-link">Veille technologique</a>
-                <a href="bilan.html" class="menu-link active">Bilan</a>
+                <a href="bilan.html" class="menu-link">Bilan</a>
             </nav>
         </div>
     </header>

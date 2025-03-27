@@ -32,9 +32,8 @@
 /* Container des articles */
 .articles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 /* Style des articles */
@@ -176,25 +175,20 @@
 }
 /* Section filtres */
 .filters-section {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: #2d2d44;
-    border: 2px solid #f39c12;
+    padding: 1rem;
 }
 
 .filters-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 /* Style commun pour les boîtes de filtres */
 .search-box,
 .filter-box,
 .sort-box {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    width: 100%;
 }
 
 /* Labels */
@@ -238,17 +232,10 @@
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
-    .filters-section {
-        padding: 1rem;
-    }
-    
-    .filters-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .filters-section label {
-        font-size: 0.7rem;
+@media (max-width: 767px) {
+    .search-box,
+    .filter-box,
+    .sort-box {
+        width: 100%;
     }
 }

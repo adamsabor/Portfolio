@@ -41,7 +41,7 @@
    background-color: #2d2d44;
    border: 3px solid #f39c12;
    border-radius: 15px;
-   margin-bottom: 40px;
+   margin-bottom: 1.5rem;
    overflow: hidden;
    transition: all 0.3s ease;
    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -91,7 +91,7 @@
    max-height: 0;
    overflow: hidden;
    transition: max-height 0.5s ease, padding 0.5s ease;
-   padding: 0 20px;
+   padding: 1rem;
 }
 
 .bilan-content.active {
@@ -195,5 +195,29 @@
 
    .competence-item {
        font-size: 0.8rem;
+   }
+}
+
+/* Modules de bilan responsifs */
+.bilan-module {
+   width: 100%;
+   margin-bottom: 1.5rem;
+}
+
+.bilan-content {
+   padding: 1rem;
+}
+
+.details-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+   .bilan-header {
+       flex-direction: column;
+       align-items: center;
+       text-align: center;
    }
 }

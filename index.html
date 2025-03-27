@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Adam Sabor</title>
+    <link rel="icon" type="image/webp" href="iconenav/accueil.webp" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,9 +32,15 @@
         <nav class="nav-menu">
             <a href="index.html" class="menu-link">Accueil</a>
             <a href="entreprise.html" class="menu-link">Entreprise</a>
-            <a href="réalisations.html" class="menu-link">Réalisations</a>
+            <div class="dropdown">
+                <a href="#" class="menu-link">Réalisations</a>
+                <div class="dropdown-content">
+                    <a href="réalisationsscolaire.html">Réalisations Scolaires</a>
+                    <a href="réalisationsentreprise.html">Réalisations Professionnelles</a>
+                </div>
+            </div>
             <a href="veille.html" class="menu-link">Veille technologique</a>
-            <a href="bilan.html" class="menu-link active">Bilan</a>
+            <a href="bilan.html" class="menu-link">Bilan</a>
         </nav>
     </div>
 </header>
@@ -74,7 +81,7 @@
         <section class="content-card">
 
             <h2>À Propos de Moi</h2>
-            <p> Je m'appelle Adam Sabor, étudiant en deuxième année de BTS SIO, spécialité SLAM. Titulaire d’un bac STI2D, je me forme au développement d’applications pour répondre aux besoins des entreprises. Actuellement en apprentissage chez Renault Group, j'acquiers une expérience concrète en conception et optimisation de solutions logicielles, me permettant de renforcer mes compétences techniques </p>
+            <p> Je m'appelle Adam Sabor, étudiant en deuxième année de BTS SIO, spécialité SLAM. Titulaire d'un bac STI2D, je me forme au développement d'applications pour répondre aux besoins des entreprises. Actuellement en apprentissage chez Renault Group, j'acquiers une expérience concrète en conception et optimisation de solutions logicielles, me permettant de renforcer mes compétences techniques </p>
         </section>
         <div class="separator"></div>
 
@@ -127,7 +134,7 @@
         </section>
         <div class="separator"></div>
 
-        <<section class="content-card">
+        <section class="content-card">
             <h2><i class="material-icons section-icon">verified</i> MOOC et Certifications</h2>
             <div class="carousel-container">
                 <div class="carousel-track-container">
@@ -148,29 +155,15 @@
                             <span class="tech-label">Cybermalveillance</span>
                             <span class="status-label">En cours</span>
                         </a>
-                        <a href="https://www.root-me.org/adamsbr?lang=fr#be3cde5be3692ab3de5b768e431b30f7" target="_blank" class="carousel-item">
-                            <img src="assets/rootme.png" alt="Root Me" class="certif-icon">
-                            <span class="tech-label">Root Me</span>
-                            <span class="status-label">En cours</span>
+                        <a href="https://www.codedex.io/@adam78" target="_blank" class="carousel-item">
+                            <img src="assets/codedex.jpeg" alt="codedex" class="certif-icon">
+                            <span class="tech-label">Codedex</span>
+                            <span class="status-label"></span>
                         </a>
-                        
                         <a href="https://universite.bpifrance.fr/Catalog/training/778535" target="_blank" class="carousel-item">
                             <img src="assets/iamooc.png" alt="ANSSI" class="certif-icon">
-                            <span class="tech-label">MOOC IA</span>
+                            <span class="tech-label">MOOC ML</span>
                             <span class="status-label">prochainement</span>
-                        </a>
-                        <a href="assets" target="_blank" class="carousel-item">
-                            <img src="assets/formexcel.jpeg" alt="CNIL" class="certif-icon">
-                            <span class="tech-label"> excel niveau 1</span>
-                        </a>
-                        <a href="" target="_blank" class="carousel-item">
-                            <img src="assets/formajira.jpeg" alt="Cybermalveillance" class="certif-icon">
-                            <span class="tech-label">Formation Jira</span>
-                            <span class="status-label">Prochainement</span>
-                        </a>
-                        <a href="" target="_blank" class="carousel-item">
-                            <img src="assets/fos.png" alt="Root Me" class="certif-icon">
-                            <span class="tech-label">fos</span>
                         </a>
                     </div>
                 </div>
