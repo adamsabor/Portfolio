@@ -81,7 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!counter) {
             counter = document.createElement('div');
             counter.className = 'results-counter';
-            counter.style.cssText = 'color: #f39c12; margin-bottom: 1rem; text-align: right;';
+            counter.style.cssText = `
+                color: #f39c12;
+                margin: 2rem 0 1rem;
+                text-align: center;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.9rem;
+                padding: 1rem;
+                border-top: 2px solid #f39c12;
+            `;
             document.querySelector('.filters-container').appendChild(counter);
         }
 
@@ -120,12 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
         background: #f39c12;
         color: #2d2d44;
         border: none;
-        padding: 0.8rem 1.5rem;
+        border-radius: 6px;
+        padding: 1rem;
         cursor: pointer;
-        font-family: inherit;
-        font-weight: bold;
-        margin-top: 1rem;
-        transition: background-color 0.3s ease;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.8rem;
+        margin: 2rem auto 0;
+        width: 100%;
+        max-width: 250px;
+        transition: all 0.3s ease;
+        display: block;
     `;
     
     resetButton.addEventListener('mouseenter', () => {

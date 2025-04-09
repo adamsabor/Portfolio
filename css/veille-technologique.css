@@ -1,45 +1,123 @@
 /* Base */
 .tech-watch {
     max-width: 1200px;
-    margin: 2rem auto;
-    padding: 2rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 /* Titre principal */
 .tech-watch h2 {
+    font-family: 'Press Start 2P', cursive;
     color: #f39c12;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin: 2rem 0;
     text-align: center;
+    line-height: 1.5;
 }
 
 /* Résumé */
 .summary {
     background: #2d2d44;
-    padding: 1.5rem 2rem;
-    margin-bottom: 3rem;
+    padding: 2rem;
+    margin: 2rem auto;
     border: 2px solid #f39c12;
+    border-radius: 12px;
+    max-width: 900px;
 }
 
 .summary p {
     color: #f0f0c9;
     font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
+    line-height: 1.8;
+    text-align: justify;
 }
 
-/* Container des articles */
-.articles-container {
+/* Outils de veille */
+.tools-section {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.tools-section h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: #f39c12;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.tools-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.imgveille {
+    width: 100px;
+    height: 100px;
+    padding: 1rem;
+    background: #2d2d44;
+    border: 2px solid #f39c12;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.imgveille:hover {
+    transform: scale(1.1);
+}
+
+/* Section filtres */
+.filters-section {
+    background: #2d2d44;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #f39c12;
+    margin: 2rem auto;
+    max-width: 900px;
+}
+
+.filters-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
-/* Style des articles */
+.search-box, .filter-box, .sort-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filters-section label {
+    color: #f39c12;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+.filters-section input,
+.filters-section select {
+    padding: 0.8rem;
+    background: #1b1b32;
+    border: 2px solid #f39c12;
+    border-radius: 6px;
+    color: #f0f0c9;
+    font-size: 1rem;
+}
+
+/* Articles */
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
 .article-box {
+    position: relative;
     background: #2d2d44;
     border: 2px solid #f39c12;
+    border-radius: 12px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -50,42 +128,38 @@
     transform: translateY(-5px);
 }
 
-/* Images des articles */
 .article-image {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
-    border-bottom: 2px solid #f39c12;
 }
 
-/* Titre des articles */
 .article-box h3 {
+    font-family: 'Press Start 2P', cursive;
     color: #f39c12;
-    font-size: 1.1rem;
-    padding: 1rem 1.5rem;
-    margin: 0;
-    line-height: 1.4;
-    min-height: 60px;
+    font-size: 1rem;
+    padding: 1.5rem;
+    line-height: 1.6;
 }
 
-/* Résumé des articles */
 .article-box p {
     color: #f0f0c9;
     padding: 0 1.5rem;
-    margin: 0.5rem 0 1rem 0;
     line-height: 1.6;
     flex-grow: 1;
 }
 
-/* Liens des articles */
 .article-box a {
     color: #f39c12;
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    margin: 0.5rem;
-    border: 1px solid #f39c12;
+    padding: 1rem;
+    margin: 1.5rem;
+    border: 2px solid #f39c12;
+    border-radius: 6px;
     text-align: center;
     transition: all 0.3s ease;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
 }
 
 .article-box a:hover {
@@ -95,147 +169,46 @@
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .tech-watch {
-        padding: 1rem;
-    }
-
-    .articles-container {
+    .filters-container {
         grid-template-columns: 1fr;
     }
-
-    .article-image {
-        height: 200px;
+    
+    .tools-container {
+        flex-direction: column;
+        align-items: center;
     }
-
-    .article-box h3 {
-        font-size: 1rem;
-        min-height: auto;
+    
+    .article-box {
+        margin: 0 1rem;
+    }
+    
+    .tech-watch h2 {
+        font-size: 1.4rem;
+        padding: 0 1rem;
     }
 }
 
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1024px) {
     .articles-container {
         grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
     }
 }
 
-/* Titre des outils de veille */
-.tech-watch h3 {
-    color: #f39c12;
-    font-size: 1.5rem;
-    margin: 2rem 0 1.5rem 0;
-    text-align: left;
-    font-family: 'Press Start 2P', cursive;
+/* Nouveau style pour le drapeau */
+.language-flag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 24px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 2;
+    transition: transform 0.2s ease;
 }
 
-/* Container des images de veille */
-.tools-container {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-}
-
-/* Style des images de veille */
-.imgveille {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    background: #2d2d44;
-    padding: 1rem;
-    border: 2px solid #f39c12;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.imgveille:hover {
+.language-flag:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
-    background: #3d3d54;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .tools-container {
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .imgveille {
-        width: 100px;
-        height: 100px;
-    }
-
-    .tech-watch h3 {
-        font-size: 1.2rem;
-        text-align: center;
-    }
-}
-/* Section filtres */
-.filters-section {
-    padding: 1rem;
-}
-
-.filters-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-/* Style commun pour les boîtes de filtres */
-.search-box,
-.filter-box,
-.sort-box {
-    width: 100%;
-}
-
-/* Labels */
-.filters-section label {
-    color: #f39c12;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Inputs et selects */
-.filters-section input,
-.filters-section select {
-    padding: 0.8rem;
-    background: #1b1b32;
-    border: 2px solid #f39c12;
-    color: #f0f0c9;
-    font-family: inherit;
-    width: 100%;
-    cursor: pointer;
-}
-
-/* Focus states */
-.filters-section input:focus,
-.filters-section select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(243, 156, 18, 0.3);
-}
-
-/* Hover states */
-.filters-section input:hover,
-.filters-section select:hover {
-    background: #252547;
-}
-
-/* Options dans les selects */
-.filters-section select option {
-    background: #1b1b32;
-    color: #f0f0c9;
-    padding: 0.5rem;
-}
-
-/* Media Queries */
-@media (max-width: 767px) {
-    .search-box,
-    .filter-box,
-    .sort-box {
-        width: 100%;
-    }
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }

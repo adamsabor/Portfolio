@@ -321,10 +321,11 @@ h2:after {
 
 .missions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .mission-card {
@@ -337,7 +338,8 @@ h2:after {
     border-radius: 1rem;
     border: 2px solid var(--primary);
     transition: var(--transition);
-    height: 100%;
+    height: 300px;
+    width: 100%;
 }
 
 .mission-card:hover {
@@ -366,15 +368,15 @@ h2:after {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
 }
 
 .mission-content h3 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    position: relative;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
 }
 
 .mission-content h3:after {
@@ -573,6 +575,10 @@ h2:after {
         width: 95%;
         padding: 1.5rem;
     }
+    
+    .missions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 992px) {
@@ -621,7 +627,8 @@ h2:after {
     }
     
     .mission-card {
-        padding: 1.5rem;
+        height: auto;
+        min-height: 250px;
     }
     
     .mission-icon {
@@ -663,7 +670,7 @@ h2:after {
     }
     
     .mission-card {
-        padding: 1.2rem;
+        padding: 1rem;
     }
     
     h2 {
