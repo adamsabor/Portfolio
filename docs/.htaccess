@@ -1,0 +1,21 @@
+<IfModule mod_headers.c>
+    # PDF
+    AddType application/pdf .pdf
+
+    # MP4 vidéo
+    AddType video/mp4 .mp4
+
+    # PowerPoint
+    AddType application/vnd.ms-powerpoint .ppt
+    AddType application/vnd.openxmlformats-officedocument.presentationml.presentation .pptx
+
+    # Excel
+    AddType application/vnd.ms-excel .xls
+    AddType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet .xlsx
+
+    # Fichiers texte
+    AddType text/plain .txt .md
+
+    # Forcer l'ouverture dans le navigateur (si possible)
+    Header set Content-Disposition inline
+</IfModule>
