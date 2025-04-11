@@ -1,6 +1,21 @@
-mettre tout les document por toute les realisations 
+# À faire
 
-faire en sorte que le responsivesois carrée
+## Documents
+- Ajouter tous les documents pour toutes les réalisations
 
-ajouter un avatar personnaliser 
+## Design
+- Améliorer le responsive design
+- Ajouter un avatar personnalisé
 
+## Éléments à trouver
+- Data rezonning
+- Process flow Deselec 
+- Vidéo outil Deselec
+-
+
+## Pour plus tard
+- Mettre à jour et nettoyer :
+  - LocOptim
+  - PicOptim
+  - Schéma des données
+  - Gains des outils

@@ -306,3 +306,7 @@
       color: black;
     }
   }
+
+a :-webkit-any(:any-link ) {
+  cursor: pointer;
+}
