@@ -15,23 +15,54 @@ body {
     background: var(--bg);
     color: var(--text);
     margin: 0;
+    padding: 0;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* Container principal pour organisation */
-.container {
+main {
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto 5rem;
-    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-/* Header de section */
+/* Container et wrapper */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Section headers */
 .section-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
     gap: 1rem;
+    position: relative;
 }
 
 .section-icon {
@@ -39,19 +70,134 @@ body {
     font-size: 2rem;
 }
 
+h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin: 0;
+    position: relative;
+}
+
+/* Présentation section */
+.presentation-section {
+    width: 100%;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 2px solid var(--primary);
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.feature-list li strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Section Mon Poste */
+.poste-section {
+    width: 100%;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 2px solid var(--primary);
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.poste-content {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 3rem;
+    align-items: start;
+}
+
+.poste-text {
+    padding-right: 2rem;
+}
+
+.poste-text h3 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.poste-text p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.poste-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.poste-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.poste-list i {
+    color: var(--primary);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.poste-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    border: 2px solid var(--primary);
+}
+
+.poste-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.poste-image img:hover {
+    transform: scale(1.05);
+}
+
 /* Hero amélioré */
 .hero {
+    width: 100%;
+    max-width: 1200px;
     position: relative;
-    height: auto;
-    min-height: 50vh;
+    height: 50vh;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-radius: 1rem;
-    margin: 2rem auto 4rem;
-    max-width: 1200px;
-    box-shadow: var(--box-shadow);
+    margin: 2rem auto;
+    padding: 0;
 }
 
 .hero-image {
@@ -60,21 +206,19 @@ body {
     height: 100%;
     object-fit: cover;
     opacity: 0.3;
-    transform: scale(1);
-    transition: transform 10s ease;
-}
-
-.hero:hover .hero-image {
-    transform: scale(1.05);
+    transition: transform 0.5s ease;
 }
 
 .hero-content {
     position: relative;
-    text-align: center;
     z-index: 1;
+    text-align: center;
     padding: 2rem;
-    transform: translateY(0);
-    transition: transform 0.4s ease-out;
+    transition: transform 0.3s ease;
+}
+
+.hero:hover .hero-image {
+    transform: scale(1.05);
 }
 
 .hero:hover .hero-content {
@@ -94,15 +238,7 @@ section {
     opacity: 1;
     transform: translateY(0);
     transition: var(--transition);
-}
-
-h2 {
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    position: relative;
-    display: inline-block;
+    width: 100%;
 }
 
 h2:after {
@@ -123,38 +259,6 @@ h2:after {
     transform-origin: bottom left;
 }
 
-/* Présentation et Performance */
-.presentation-section, .performance-section {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 1rem;
-    border: 2px solid var(--primary);
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-}
-
-.presentation-section:hover, .performance-section:hover {
-    transform: translateY(-5px);
-    background: var(--gradient);
-}
-
-/* Feature list */
-.feature-list {
-    padding-left: 1.5rem;
-}
-
-.feature-list li {
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-.feature-list li::before {
-    content: ">";
-    color: var(--primary);
-    position: absolute;
-    left: -1.2rem;
-}
-
 /* Expérience */
 .experience-card {
     display: flex;
@@ -173,11 +277,14 @@ h2:after {
 
 /* Ecosystem */
 .ecosystem-section {
+    width: 100%;
     padding: 2rem;
     background: var(--card-bg);
     border-radius: 1rem;
     border: 2px solid var(--primary);
     transition: var(--transition);
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .ecosystem-section:hover {
@@ -203,6 +310,7 @@ h2:after {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .card {
@@ -212,6 +320,8 @@ h2:after {
     border: 2px solid var(--primary);
     transition: var(--transition);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .card:hover {
@@ -250,9 +360,9 @@ h2:after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
 }
 
 .tech-card {
@@ -264,6 +374,8 @@ h2:after {
     transition: var(--transition);
     overflow: hidden;
     height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tech-card:hover {
@@ -317,15 +429,16 @@ h2:after {
 /* Missions */
 .missions-section {
     padding: 4rem 0;
+    width: 100%;
 }
 
 .missions-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
 }
 
 .mission-card {
@@ -338,8 +451,9 @@ h2:after {
     border-radius: 1rem;
     border: 2px solid var(--primary);
     transition: var(--transition);
-    height: 300px;
+    min-height: 250px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .mission-card:hover {
@@ -377,6 +491,7 @@ h2:after {
     margin-bottom: 1rem;
     text-align: center;
     width: 100%;
+    position: relative;
 }
 
 .mission-content h3:after {
@@ -535,6 +650,7 @@ h2:after {
     background: rgba(0, 0, 0, 0.3);
     padding: 2rem 0;
     margin-top: 5rem;
+    width: 100%;
 }
 
 .footer-content {
@@ -559,12 +675,12 @@ h2:after {
 /* Responsive */
 @media (max-width: 1200px) {
     .container {
-        padding: 0 2rem;
+        padding: 0;
+        width: 100%;
     }
     
-    .hero {
-        margin-left: 1rem;
-        margin-right: 1rem;
+    .content-wrapper {
+        padding: 0 1rem;
     }
     
     .tech-grid {
@@ -588,11 +704,40 @@ h2:after {
     
     .missions-grid {
         grid-template-columns: repeat(2, 1fr);
-        padding: 0 1rem;
+        padding: 0;
     }
     
     .role-cards {
         grid-template-columns: 1fr;
+    }
+    
+    .poste-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .poste-text {
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .poste-text h3 {
+        text-align: center;
+    }
+    
+    .poste-list li {
+        justify-content: center;
+    }
+    
+    .poste-image {
+        height: 350px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .presentation-section,
+    .poste-section,
+    .ecosystem-section {
+        padding: 2rem;
     }
 }
 
@@ -610,14 +755,15 @@ h2:after {
     .hero {
         height: 40vh;
         min-height: 300px;
-        margin: 1rem;
+        margin: 1rem auto;
     }
     
     .glitch-logo {
         font-size: 2rem;
     }
 
-    .tech-grid, .missions-grid {
+    .tech-grid, 
+    .missions-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
@@ -627,8 +773,7 @@ h2:after {
     }
     
     .mission-card {
-        height: auto;
-        min-height: 250px;
+        min-height: 220px;
     }
     
     .mission-icon {
@@ -648,13 +793,24 @@ h2:after {
     }
     
     .container {
-        margin-bottom: 3rem;
+        margin: 1.5rem auto;
+    }
+    
+    .presentation-section,
+    .poste-section,
+    .ecosystem-section {
+        padding: 1.5rem;
+    }
+    
+    .content-wrapper {
+        padding: 0 0.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 1rem;
+        padding: 0;
+        margin: 1rem auto;
     }
     
     .hero {
@@ -689,10 +845,10 @@ h2:after {
     .mission-content h3 {
         font-size: 1.1rem;
     }
-}
-
-@media (max-width: 767px) {
-    .hero-content {
-        padding: 2rem 1rem;
+    
+    .presentation-section,
+    .poste-section,
+    .ecosystem-section {
+        padding: 1rem;
     }
 }

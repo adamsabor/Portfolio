@@ -1,63 +1,68 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     // Gestion du menu mobile
-    initializeMobileMenu();
-    
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const body = document.body;
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+    }
+
     // Gestion des dropdowns sur mobile
-    initializeDropdowns();
-    
+    dropdowns.forEach(dropdown => {
+        const dropdownLink = dropdown.querySelector('.menu-link');
+        
+        if (dropdownLink) {
+            dropdownLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+
+    // Fermer le menu quand on clique en dehors
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-container') && !e.target.closest('.nav-menu')) {
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            if (body) body.classList.remove('menu-open');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        }
+    });
+
+    // Fermer le menu quand on redimensionne la fenêtre
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            if (body) body.classList.remove('menu-open');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        }
+    });
+
+    // Empêcher le défilement quand le menu est ouvert
+    if (body) {
+        body.addEventListener('touchmove', (e) => {
+            if (body.classList.contains('menu-open')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
+
     // Gestion du carrousel si présent
     if (document.querySelector('.carousel-track')) {
         initializeCarousel();
     }
 });
-
-/**
- * Initialise le menu mobile
- */
-function initializeMobileMenu() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (!mobileMenuBtn || !navMenu) return;
-    
-    mobileMenuBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Fermer le menu en cliquant à l'extérieur
-    document.addEventListener('click', function(e) {
-        if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-        }
-    });
-}
-
-/**
- * Initialise les dropdowns pour mobile
- */
-function initializeDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('.menu-link');
-        
-        if (window.innerWidth <= 768) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-                
-                // Fermer les autres dropdowns
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        otherDropdown.classList.remove('active');
-                    }
-                });
-            });
-        }
-    });
-}
 
 /**
  * Initialise le carrousel

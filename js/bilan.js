@@ -32,25 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Gestion du menu mobile (si présent dans la page)
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Ferme le menu mobile lors du clic sur un lien
-        document.querySelectorAll('.nav-menu .menu-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-
     // Animation au défilement
     const observeElements = () => {
         const observer = new IntersectionObserver((entries) => {
