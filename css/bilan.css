@@ -516,3 +516,172 @@
           margin-bottom: .5rem;
       }
   }
+
+.bilan-container {
+    padding: var(--space-xl);
+    background-color: var(--primary-bg);
+    min-height: 100vh;
+}
+
+.bilan-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.bilan-title {
+    color: var(--accent);
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-md);
+}
+
+.bilan-subtitle {
+    color: var(--text-primary);
+    font-size: var(--text-md);
+}
+
+.competences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.competence-card {
+    background-color: var(--darker-bg);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-lg);
+    border: var(--border-width-md) solid var(--accent);
+    transition: var(--transition-base);
+}
+
+.competence-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.competence-title {
+    color: var(--accent);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.competence-description {
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.progress-container {
+    margin-top: var(--space-md);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-primary);
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-xs);
+}
+
+.progress-bar {
+    height: var(--space-sm);
+    background-color: var(--primary-bg);
+    border-radius: var(--border-radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent);
+    border-radius: var(--border-radius-full);
+    transition: var(--transition-base);
+}
+
+.objectifs-section {
+    margin-top: var(--space-xl);
+}
+
+.objectif-card {
+    background-color: var(--darker-bg);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-lg);
+    border: var(--border-width-md) solid var(--accent);
+    margin-bottom: var(--space-lg);
+    transition: var(--transition-base);
+}
+
+.objectif-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.objectif-title {
+    color: var(--accent);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-md);
+}
+
+.objectif-list {
+    list-style: none;
+    padding: 0;
+}
+
+.objectif-item {
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-lg);
+    position: relative;
+}
+
+.objectif-item::before {
+    content: "→";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+}
+
+/* Media Queries standardisées */
+@media (max-width: var(--desktop)) {
+    .bilan-container {
+        padding: var(--space-lg);
+    }
+    
+    .competences-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: var(--tablet)) {
+    .competences-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .competence-card,
+    .objectif-card {
+        padding: var(--space-md);
+    }
+}
+
+@media (max-width: var(--mobile)) {
+    .bilan-container {
+        padding: var(--space-md);
+    }
+    
+    .bilan-title {
+        font-size: var(--text-lg);
+    }
+    
+    .bilan-subtitle {
+        font-size: var(--text-sm);
+    }
+    
+    .competence-title,
+    .objectif-title {
+        font-size: var(--text-md);
+    }
+}

@@ -1,3 +1,105 @@
+/* Variables globales du système de design */
+:root {
+    /* Couleurs principales en RGB pour la flexibilité */
+    --primary-rgb: 243, 156, 18;    /* Orange */
+    --accent-rgb: 255, 165, 0;      /* Orange vif */
+    --text-rgb: 230, 230, 250;      /* Lavande clair */
+    --bg-rgb: 27, 27, 50;           /* Bleu foncé */
+    --darker-bg-rgb: 23, 23, 43;    /* Bleu plus foncé */
+    
+    /* Couleurs dérivées avec transparence */
+    --primary-color: rgb(var(--primary-rgb));
+    --accent: rgb(var(--accent-rgb));
+    --text-primary: rgb(var(--text-rgb));
+    --primary-bg: rgb(var(--bg-rgb));
+    --darker-bg: rgb(var(--darker-bg-rgb));
+    
+    /* Système d'espacement (rem) */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    
+    /* Système de bordures */
+    --border-width-sm: 1px;
+    --border-width-md: 2px;
+    --border-width-lg: 3px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-full: 50%;
+    
+    /* Système d'ombres */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --glow: 0 0 15px rgba(var(--accent-rgb), 0.3);
+    
+    /* Système de typographie */
+    --font-primary: 'Press Start 2P', cursive;
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-md: 1rem;       /* 16px */
+    --text-lg: 1.25rem;    /* 20px */
+    --text-xl: 1.5rem;     /* 24px */
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Z-index système */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal: 300;
+    --z-popup: 400;
+    
+    /* Breakpoints */
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large: 1200px;
+}
+
+/* Reset et base */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--text-md);
+    line-height: 1.6;
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+}
+
+/* Utilitaires de base */
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Focus accessible */
+:focus-visible {
+    outline: var(--border-width-md) solid var(--accent);
+    outline-offset: var(--space-xs);
+}
+
 /* Variables globales du thème */
 :root {
     /* Variables de base */
@@ -204,8 +306,9 @@ body {
 
 /* Styles du sélecteur de thèmes */
 .theme-switcher {
-    margin-left: 1rem;
     position: relative;
+    margin-left: 1rem;
+    z-index: 1000;
 }
 
 .theme-toggle-btn {
@@ -218,34 +321,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     transition: all 0.3s ease;
-    z-index: 10;
+    color: var(--accent);
 }
 
 .theme-toggle-btn:hover {
     transform: scale(1.1);
-    box-shadow: var(--border-glow);
-}
-
-.current-theme-icon {
-    font-size: 18px;
+    box-shadow: 0 0 15px var(--accent);
 }
 
 .theme-options {
     position: absolute;
     top: 50px;
     right: 0;
-    background-color: var(--card-bg);
+    background-color: var(--darker-bg);
     border: 2px solid var(--accent);
     border-radius: 12px;
-    padding: 0.5rem;
+    padding: 1rem;
     display: none;
     flex-direction: column;
-    gap: 0.5rem;
-    min-width: 120px;
-    box-shadow: var(--border-glow);
-    z-index: 100;
+    gap: 0.8rem;
+    min-width: 150px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .theme-switcher.active .theme-options {
@@ -255,33 +352,34 @@ body {
 .theme-option {
     background: none;
     border: none;
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1rem;
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     color: var(--text);
+    font-family: 'Press Start 2P', cursive;
 }
 
 .theme-option:hover {
-    background-color: var(--card-hover);
+    background-color: var(--accent);
+    color: var(--darker-bg);
+}
+
+.theme-option.active {
+    background-color: var(--accent);
+    color: var(--darker-bg);
 }
 
 .theme-option-icon {
-    font-size: 16px;
+    font-size: 1.2rem;
 }
 
 .theme-option-label {
-    font-family: 'Press Start 2P', cursive;
     font-size: 0.7rem;
-}
-
-/* Animation lorsqu'un thème est sélectionné */
-.theme-option.active {
-    background-color: var(--accent);
-    color: var(--primary-bg);
+    white-space: nowrap;
 }
 
 /* Animation du bouton */
@@ -297,7 +395,7 @@ body {
 /* Media queries pour le sélecteur de thèmes */
 @media (max-width: 768px) {
     .theme-switcher {
-        position: absolute;
+        position: fixed;
         top: 15px;
         right: 65px;
     }
@@ -308,8 +406,18 @@ body {
     }
     
     .theme-options {
-        right: -20px;
-        top: 45px;
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        padding: 0.8rem;
+    }
+
+    .theme-option {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .theme-option-label {
+        font-size: 0.6rem;
     }
 }
 
@@ -326,12 +434,6 @@ body {
     --mobile-breakpoint: 480px;
     --tablet-breakpoint: 768px;
     --desktop-breakpoint: 1024px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 html, body {
