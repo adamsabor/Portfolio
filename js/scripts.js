@@ -68,52 +68,43 @@ document.addEventListener('DOMContentLoaded', () => {
  * Initialise le carrousel
  */
 function initializeCarousel() {
-    const trackContainer = document.querySelector('.carousel-track-container');
     const track = document.querySelector('.carousel-track');
     const items = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
     
     if (!track || items.length < 1) return;
     
-    // Ajouter des boutons de navigation
-    const carouselContainer = document.querySelector('.carousel-container');
+    let currentIndex = 0;
+    const itemWidth = items[0].offsetWidth + 24; // 24px est la valeur du gap
+    const maxIndex = items.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
     
-    // Créer les boutons de navigation si pas déjà présents
-    if (!document.querySelector('.carousel-nav')) {
-        const navDiv = document.createElement('div');
-        navDiv.className = 'carousel-nav';
+    function updateCarousel() {
+        const translateX = -currentIndex * itemWidth;
+        track.style.transform = `translateX(${translateX}px)`;
         
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'carousel-button prev';
-        prevBtn.innerHTML = '&#10094;';
-        
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'carousel-button next';
-        nextBtn.innerHTML = '&#10095;';
-        
-        navDiv.appendChild(prevBtn);
-        navDiv.appendChild(nextBtn);
-        carouselContainer.appendChild(navDiv);
-        
-        // Événements des boutons
-        prevBtn.addEventListener('click', scrollPrev);
-        nextBtn.addEventListener('click', scrollNext);
+        // Mettre à jour la visibilité des boutons
+        if (prevBtn) prevBtn.style.display = currentIndex <= 0 ? 'none' : 'flex';
+        if (nextBtn) nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
     }
     
-    // Faire défiler vers la gauche
     function scrollPrev() {
-        trackContainer.scrollBy({
-            left: -300,
-            behavior: 'smooth'
-        });
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
     }
     
-    // Faire défiler vers la droite
     function scrollNext() {
-        trackContainer.scrollBy({
-            left: 300,
-            behavior: 'smooth'
-        });
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
     }
+    
+    // Événements des boutons
+    if (prevBtn) prevBtn.addEventListener('click', scrollPrev);
+    if (nextBtn) nextBtn.addEventListener('click', scrollNext);
     
     // Navigation par touche clavier
     document.addEventListener('keydown', function(e) {
@@ -128,11 +119,11 @@ function initializeCarousel() {
     let touchStartX = 0;
     let touchEndX = 0;
     
-    trackContainer.addEventListener('touchstart', function(e) {
+    track.addEventListener('touchstart', function(e) {
         touchStartX = e.changedTouches[0].screenX;
     });
     
-    trackContainer.addEventListener('touchend', function(e) {
+    track.addEventListener('touchend', function(e) {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
@@ -140,11 +131,18 @@ function initializeCarousel() {
     function handleSwipe() {
         const swipeThreshold = 50;
         if (touchEndX < touchStartX - swipeThreshold) {
-            // Swipe gauche
             scrollNext();
         } else if (touchEndX > touchStartX + swipeThreshold) {
-            // Swipe droite
             scrollPrev();
         }
     }
+    
+    // Mettre à jour le carrousel lors du redimensionnement
+    window.addEventListener('resize', function() {
+        currentIndex = Math.min(currentIndex, maxIndex);
+        updateCarousel();
+    });
+    
+    // Initialisation
+    updateCarousel();
 }

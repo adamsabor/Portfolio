@@ -1,7 +1,7 @@
 /* ====================================
    1. VARIABLES ET RESET
    ==================================== */
-:root {
+   :root {
     --primary-bg: #1b1b32;
     --darker-bg: #1b1b32;
     --accent: #ffa500;
@@ -22,6 +22,7 @@
 html, body {
     width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -32,7 +33,7 @@ body {
 }
 
 /* ====================================
-   2. HEADER ET NAVIGATION
+   2. HEADER ET NAVIGATION - INCHANGÉ
    ==================================== */
 .nav-header {
     background-color: var(--darker-bg);
@@ -153,21 +154,21 @@ body {
 }
 
 /* ====================================
-   3. BARRE LATÉRALE DE CONTACT
+   3. BARRE LATÉRALE DE CONTACT - OPTIMISÉ
    ==================================== */
 .lateral-contact {
     position: fixed;
-    left: 40px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
     background-color: var(--darker-bg);
     border: 2px solid var(--accent);
     border-radius: 12px;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    width: 220px;
+    gap: 25px;
+    width: 200px;
     box-shadow: var(--border-glow);
     z-index: 99;
 }
@@ -175,13 +176,13 @@ body {
 /* Éléments de contact */
 .contact-title {
     color: var(--accent);
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding-bottom: 15px;
+    gap: 8px;
+    padding-bottom: 12px;
     border-bottom: 2px solid var(--accent);
 }
 
@@ -199,18 +200,19 @@ body {
     text-decoration: none;
     color: var(--text);
     transition: all 0.3s ease;
-    gap: 10px;
+    gap: 8px;
 }
 
 .contact-icon {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
+    transition: transform 0.2s ease;
 }
 
 .icon-title {
     color: var(--accent);
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .contact-label {
@@ -220,9 +222,9 @@ body {
     transform: translateY(-50%);
     background: var(--accent);
     color: var(--darker-bg);
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 10px;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
@@ -230,8 +232,8 @@ body {
     font-weight: bold;
 }
 
-.contact-item:hover {
-    /* Suppression de transform: scale(1.05); */
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
 }
 
 .contact-item:hover .contact-label {
@@ -240,56 +242,25 @@ body {
 }
 
 /* ====================================
-   4. CONTENEUR PRINCIPAL ET CARDS
+   4. CONTENEUR PRINCIPAL ET CARDS - OPTIMISÉ
    ==================================== */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
     position: relative;
 }
 
 .content-card {
     background-color: rgb(42, 44, 77);
-    padding: 30px;
+    padding: 2rem;
     border-radius: 12px;
     border: 2px solid var(--accent);
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     transition: all 0.3s ease;
     box-shadow: var(--border-glow);
     width: 100%;
-}
-
-/* Styles pour l'image de profil */
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-}
-
-/* Media queries pour l'image de profil */
-@media (max-width: 768px) {
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
 }
 
 .content-card:nth-child(even) {
@@ -303,45 +274,55 @@ body {
 
 .content-card h2 {
     color: var(--accent);
-    font-size: 22px;
-    margin-bottom: 25px;
+    font-size: 20px;
+    margin-bottom: 1.5rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .content-card p {
     font-size: 14px;
     line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Styles pour l'image de profil */
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
 }
 
 /* ====================================
-   5. GRILLES (SKILLS ET TOOLS)
+   5. GRILLES (SKILLS ET TOOLS) - OPTIMISÉ
    ==================================== */
 .skills-grid,
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
     width: 100%;
-}
-
-@media (max-width: 600px) {
-    .skills-grid,
-    .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
+    margin-top: 1rem;
 }
 
 .skill-item,
 .tool-item {
-    background-color: rgb(42, 44, 77);
+    background-color: rgba(37, 39, 68, 0.6);
     border: 2px solid var(--accent);
     border-radius: 10px;
-    padding: 15px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -349,8 +330,6 @@ body {
     gap: 10px;
     transition: all 0.3s ease;
     aspect-ratio: 1/1;
-    width: 100%;
-    height: auto;
 }
 
 .skill-item:hover,
@@ -358,130 +337,146 @@ body {
     transform: translateY(-5px);
     border-color: var(--accent-hover);
     box-shadow: var(--border-glow);
+    background-color: rgba(37, 39, 68, 0.8);
 }
 
 .skill-icon,
 .tool-icon {
-    width: 60%;
+    width: 70%;
     height: auto;
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 70px;
+    max-height: 70px;
     object-fit: contain;
 }
 
 /* ====================================
-   6. CAROUSEL
+   6. CAROUSEL - OPTIMISÉ
    ==================================== */
 .carousel-container {
-    width: 100%;
     position: relative;
-    padding: 10px 0;
-    margin: 20px 0;
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
 }
 
 .carousel-track-container {
     width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-}
-
-.carousel-track-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
+    overflow-x: hidden;
+    padding: 0 40px;
 }
 
 .carousel-track {
     display: flex;
-    gap: 20px;
-    padding: 10px 5px;
+    gap: 24px;
     transition: transform 0.3s ease;
 }
 
 .carousel-item {
-    flex: 0 0 auto;
-    background-color: rgb(42, 44, 77);
+    flex: 0 0 220px;
+    background-color: rgba(42, 44, 77, 0.7);
     border: 2px solid var(--accent);
     border-radius: 10px;
-    padding: 20px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
     transition: all 0.3s ease;
-    width: 250px;
-    height: 250px;
-    box-shadow: var(--border-glow);
-}
-
-@media (max-width: 768px) {
-    .carousel-item {
-        width: 200px;
-        height: 220px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-item {
-        width: 170px;
-        height: 200px;
-    }
 }
 
 .carousel-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+    background-color: rgba(42, 44, 77, 0.9);
 }
 
 .certif-icon {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
 }
 
-@media (max-width: 480px) {
-    .certif-icon {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-/* Navigation du carousel */
-.carousel-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
-}
-
-.carousel-button {
-    background-color: var(--darker-bg);
-    border: 2px solid var(--accent);
+.tech-label {
     color: var(--accent);
+    font-size: 12px;
+    text-align: center;
+}
+
+.status-label {
+    color: var(--text);
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* Styles des flèches */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 40px;
     height: 40px;
+    background-color: var(--darker-bg);
+    border: 2px solid var(--accent);
     border-radius: 50%;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10;
 }
 
-.carousel-button:hover {
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.carousel-arrow:hover {
     background-color: var(--accent);
+}
+
+.carousel-arrow i {
+    color: var(--accent);
+    font-size: 24px;
+}
+
+.carousel-arrow:hover i {
     color: var(--darker-bg);
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .carousel-track-container {
+        padding: 0 30px;
+    }
+
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-arrow i {
+        font-size: 18px;
+    }
+
+    .carousel-item {
+        flex: 0 0 180px;
+    }
+}
+
 /* ====================================
-   7. FOOTER
+   7. FOOTER - OPTIMISÉ
    ==================================== */
 .footer {
     background-color: var(--darker-bg);
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     border-top: 2px solid var(--accent);
-    margin-top: 60px;
+    margin-top: 3rem;
     width: 100%;
 }
 
@@ -490,11 +485,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .footer p {
     font-size: 0.7rem;
-    color: var(--text-color);
+    color: var(--text);
 }
 
 .footer-nav {
@@ -503,43 +500,41 @@ body {
 }
 
 .footer-nav a {
-    color: var(--text-color);
+    color: var(--text);
     text-decoration: none;
     font-size: 0.7rem;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: var(--primary-color);
-}
-
-@media (min-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 /* ====================================
-   8. MEDIA QUERIES
+   8. MEDIA QUERIES - OPTIMISÉ
    ==================================== */
-@media (min-width: 768px) {
-    .nav-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    
-    .nav-menu {
-        display: flex;
-        flex-direction: row;
-        width: auto;
-    }
-    
-    .mobile-menu-btn {
-        display: none;
+/* En mode desktop, décaler le contenu pour éviter qu'il soit caché par lateral-contact */
+@media (min-width: 1200px) {
+    .container {
+        margin-left: 240px;
+        max-width: calc(100% - 300px);
     }
 }
 
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 1.5rem;
+    }
+    
+    .content-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Ajustements pour la navbar en version mobile */
 @media (max-width: 768px) {
     .nav-container {
         justify-content: space-between;
@@ -562,6 +557,7 @@ body {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         flex-direction: column;
         gap: 1rem;
+        z-index: 200;
     }
 
     .nav-menu.active {
@@ -605,121 +601,23 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .nav-header {
-        padding: 0.5rem;
-    }
-
-    .profile-info h1 {
-        font-size: 16px;
-    }
-
-    .profile-info p {
-        font-size: 12px;
-    }
-
-    .menu-link {
-        font-size: 12px;
-        padding: 0.8rem;
-    }
-
-    .content-card h2 {
-        font-size: 18px;
-    }
-
-    .skill-icon,
-    .tool-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .skills-grid,
-    .tools-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
-    }
-
-    .skill-item,
-    .tool-item {
-        height: 100px;
-        padding: 10px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .nav-container {
-        padding: 0 2rem;
-    }
-
-    .menu-link {
-        padding: 12px 24px;
-    }
-}
-
-/* ====================================
-   9. ANIMATIONS
-   ==================================== */
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-100% - 30px)); }
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-/* Style pour les sections alternées */
-.content-card:nth-child(odd) {
-    background-color: rgb(42, 44, 77);  /* Couleur principale */
-}
-
-.content-card:nth-child(even) {
-    background-color: rgb(47, 49, 86);  /* Légèrement plus claire pour contraste */
-}
-
-/* Images responsives */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Barre latérale de contact - Version desktop */
-.lateral-contact {
-    position: fixed;
-    left: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--darker-bg);
-    border: 2px solid var(--accent);
-    border-radius: 12px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 220px;
-    box-shadow: var(--border-glow);
-    z-index: 99;
-}
-
-/* Media query pour tablettes et mobiles */
+/* Media query pour tablettes et mobiles - barre latérale de contact repositionnée */
 @media (max-width: 1024px) {
     .lateral-contact {
         position: static;
         transform: none;
         width: 100%;
         max-width: 600px;
-        margin: 20px auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 15px;
+        margin: 1.5rem auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
     }
 
     .contact-title {
-        width: 100%;
-        margin-bottom: 10px;
+        grid-column: 1 / -1;
+        margin-bottom: 0.5rem;
     }
 
     .contact-separator {
@@ -727,113 +625,69 @@ img {
     }
 
     .contact-item {
-        flex: 0 1 auto;
-        margin: 0 10px;
+        margin: 0;
     }
 
     .contact-label {
-        /* Ajustement des labels pour la version mobile */
         position: absolute;
         left: 50%;
         top: 100%;
         transform: translateX(-50%);
-        margin-top: 10px;
+        margin-top: 8px;
         white-space: nowrap;
     }
 
     .contact-item:hover .contact-label {
         left: 50%;
     }
-}
-
-/* Ajustements supplémentaires pour très petits écrans */
-@media (max-width: 480px) {
-    .lateral-contact {
-        padding: 10px;
-        gap: 15px;
-    }
-
-    .contact-item {
-        width: calc(50% - 20px);
-        margin: 5px;
-    }
-
-    .contact-icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .icon-title {
-        font-size: 10px;
-    }
-}
-
-/* En mode desktop, décaler le contenu pour éviter qu'il soit caché par lateral-contact */
-@media (min-width: 1200px) {
-    .container {
-        margin-left: 260px;
-        max-width: calc(100% - 280px);
-    }
     
-    .lateral-contact {
-        left: 20px;
-    }
-}
-
-@media (max-width: 1199px) {
     .container {
         margin: 0 auto;
-        max-width: 900px;
+        padding: 1.5rem;
     }
 }
 
-/* Ajustement pour éviter le chevauchement des éléments */
-@media (max-width: 1024px) {
-    main.container {
-        margin-top: 30px; /* Espace pour la barre de contact en mode mobile */
-    }
-}
-
-/* Ajustement pour la barre latérale sur mobile */
-@media (max-width: 1024px) {
-    .lateral-contact {
-        padding: 15px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+/* Section "À propos" adaptée pour mobile */
+@media (max-width: 768px) {
+    .content-card > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
     
-    .contact-title {
-        grid-column: 1 / -1;
-        margin-bottom: 10px;
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        margin-top: 1.5rem;
     }
     
-    .contact-item {
-        width: 100%;
-        margin: 0;
+    .skills-grid,
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
     }
 }
 
+/* Ajustements pour petits écrans */
 @media (max-width: 480px) {
-    .lateral-contact {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 10px;
-        gap: 10px;
+    .container {
+        padding: 1rem;
     }
-}
-
-/* Ajustement de la taille des textes et espacements pour mobile */
-@media (max-width: 480px) {
+    
     .content-card {
-        padding: 15px;
-        margin-bottom: 20px;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .profile-image {
+        width: 120px;
+        height: 120px;
     }
     
     .content-card h2 {
         font-size: 16px;
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
         flex-direction: column;
-        text-align: center;
     }
     
     .content-card p {
@@ -841,21 +695,24 @@ img {
         line-height: 1.6;
     }
     
-    .section-icon {
-        margin-bottom: 5px;
+    .lateral-contact {
+        padding: 1rem;
+        gap: 1rem;
     }
-}
-
-/* Amélioration du carousel pour mobile */
-@media (max-width: 600px) {
-    .carousel-track {
-        gap: 15px;
+    
+    .contact-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .icon-title {
+        font-size: 9px;
     }
     
     .carousel-item {
-        width: 140px;
-        height: 170px;
-        padding: 15px;
+        width: 150px;
+        height: 180px;
+        padding: 1rem;
     }
     
     .certif-icon {
@@ -863,86 +720,46 @@ img {
         height: 50px;
     }
     
-    .tech-label {
-        font-size: 10px;
-    }
-    
-    .status-label {
-        font-size: 8px;
+    .separator {
+        margin: 1rem auto;
     }
 }
 
-/* Personnalisation de la navigation du carousel pour mobile */
-@media (max-width: 480px) {
-    .carousel-nav {
-        margin-top: 10px;
-    }
-    
-    .carousel-button {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-    }
-}
-
-/* Correction du menu mobile */
-@media (max-width: 768px) {
-    .menu-link {
-        display: block;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    
-    .dropdown {
-        width: 100%;
-    }
-    
-    .dropdown-content {
-        width: 100%;
-        position: static;
-        margin-top: 5px;
-    }
-    
-    .dropdown-content a {
-        text-align: center;
-    }
-    
-    .nav-menu.active {
-        padding: 15px;
-    }
-}
-
-/* Assurez-vous que rien ne soit trop collé aux bords */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .nav-header {
-        padding: 8px;
-    }
-    
-    .footer {
-        padding: 10px;
-        margin-top: 30px;
-    }
-}
-
-/* Séparateur responsive */
+/* ====================================
+   9. ANIMATIONS ET DIVERS - OPTIMISÉ
+   ==================================== */
+/* Séparateur élégant */
 .separator {
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    margin: 25px auto;
+    margin: 2rem auto;
     width: 80%;
+    border-radius: 3px;
 }
 
-@media (max-width: 480px) {
-    .separator {
-        margin: 15px auto;
-        width: 90%;
-    }
+/* Animation des éléments au survol */
+.content-card h2 .section-icon {
+    transition: transform 0.3s ease;
 }
 
-a :-webkit-any(:any-link ) {
+.content-card:hover h2 .section-icon {
+    transform: scale(1.1);
+}
+
+/* Amélioration de l'accessibilité */
+a:focus {
+    outline: 2px dashed var(--accent);
+    outline-offset: 3px;
+}
+
+/* Autres améliorations */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fix pour le curseur sur les liens */
+a, button, .menu-link, .dropdown, .contact-item {
     cursor: pointer;
 }

@@ -1,223 +1,517 @@
-/* Layout général */
-.container {
-   max-width: 1400px;
-   margin: 40px auto;
-   padding: 0 30px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-}
-
-.content-card {
-   width: 100%;
-   max-width: 1200px;
-}
-
-/* Structure d'alternance */
-.alternance-grid {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 30px;
-   padding: 20px 0;
-}
-
-.periode {
-   background-color: rgba(57, 57, 96, 0.3);
-   padding: 20px;
-   border-radius: 10px;
-   border: 1px solid #f39c12;
-}
-
-.periode h4 {
-   color: #f39c12;
-   font-size: 1.1rem;
-   margin-bottom: 15px;
-   text-align: center;
-   text-transform: uppercase;
-}
-
-/* Styles spécifiques pour les modules du bilan */
-.bilan-module {
-   background-color: #2d2d44;
-   border: 3px solid #f39c12;
-   border-radius: 15px;
-   margin-bottom: 1.5rem;
-   overflow: hidden;
-   transition: all 0.3s ease;
-   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-   width: 100%;
-}
-
-.bilan-header {
-   padding: 25px 30px;
-   cursor: pointer;
-   display: flex;
-   align-items: center;
-   gap: 30px;
-   background-color: #393960;
-   transition: background-color 0.3s ease;
-}
-
-.bilan-header:hover {
-   background-color: #444478;
-}
-
-.bilan-header img {
-   width: 200px;
-   height: 150px;
-   object-fit: cover;
-   border: 3px solid #f39c12;
-   border-radius: 12px;
-   transition: transform 0.3s ease;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.bilan-header:hover img {
-   transform: scale(1.05);
-}
-
-.bilan-title {
-   color: #f39c12;
-   font-size: 1.2rem;
-   margin: 0;
-   transition: color 0.3s ease;
-}
-
-.bilan-header:hover .bilan-title {
-   color: #ffb74d;
-}
-
-.bilan-content {
-   max-height: 0;
-   overflow: hidden;
-   transition: max-height 0.5s ease, padding 0.5s ease;
-   padding: 1rem;
-}
-
-.bilan-content.active {
-   max-height: 1000px;
-   padding: 20px;
-}
-
-.bilan-text {
-   color: #f0f0c9;
-   line-height: 1.6;
-   margin-bottom: 15px;
-   opacity: 0;
-   transform: translateY(20px);
-   transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.bilan-content.active .bilan-text {
-   opacity: 1;
-   transform: translateY(0);
-}
-
-.competences-list {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   gap: 15px;
-   margin-top: 15px;
-   opacity: 0;
-   transform: translateY(20px);
-   transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
-}
-
-.bilan-content.active .competences-list {
-   opacity: 1;
-   transform: translateY(0);
-}
-
-.competence-item {
-   background-color: #393960;
-   padding: 10px;
-   border-radius: 5px;
-   border: 1px solid #f39c12;
-   text-align: center;
-   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.competence-item:hover {
-   transform: translateY(-2px);
-   box-shadow: 0 4px 8px rgba(243, 156, 18, 0.2);
-}
-
-.arrow-indicator {
-   margin-left: auto;
-   color: #f39c12;
-   transition: transform 0.3s ease;
-}
-
-.bilan-header.active .arrow-indicator {
-   transform: rotate(180deg);
-}
-
-/* Media Queries */
-/* Titre principal */
-.content-card > h2 {
-   font-size: 2rem;
-   text-align: center;
-   color: #f39c12;
-   margin-bottom: 40px;
-   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-   .bilan-header {
-       flex-direction: column;
-       text-align: center;
-       padding: 15px;
-   }
-
-   .bilan-header img {
-       width: 80px;
-       height: 80px;
-   }
-
-   .arrow-indicator {
-       margin-top: 10px;
-       margin-left: 0;
-   }
-
-   .competences-list {
-       grid-template-columns: 1fr;
-   }
-}
-
-@media (max-width: 480px) {
-   .bilan-title {
-       font-size: 1rem;
-   }
-
-   .bilan-text {
-       font-size: 0.9rem;
-   }
-
-   .competence-item {
-       font-size: 0.8rem;
-   }
-}
-
-/* Modules de bilan responsifs */
-.bilan-module {
-   width: 100%;
-   margin-bottom: 1.5rem;
-}
-
-.bilan-content {
-   padding: 1rem;
-}
-
-.details-grid {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-   gap: 1.5rem;
-}
-
-@media (max-width: 767px) {
-   .bilan-header {
-       flex-direction: column;
-       align-items: center;
-       text-align: center;
-   }
-}
+/* ====================================
+   1. VARIABLES ET BASE
+   ==================================== */
+   :root {
+      --primary: #ffa500;  /* Orange doré harmonisé avec vos autres pages */
+      --primary-glow: rgba(255, 165, 0, 0.4);
+      --secondary: #6c5ce7; /* Nouvelle couleur secondaire pour plus de dynamisme */
+      --accent: #00d2d3;    /* Couleur d'accent pour certains éléments */
+      --text: #e6e6fa;
+      --bg: #1b1b32;
+      --card-bg: rgb(42, 44, 77);
+      --card-bg-hover: rgb(47, 49, 86);
+      --header-bg: #2c2c54;
+      --gradient-primary: linear-gradient(135deg, #ffa500, #ff7b00);
+      --gradient-dark: linear-gradient(135deg, #2c2c54, #393960);
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      --glow-shadow: 0 0 15px var(--primary-glow);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --border-radius: 15px;
+  }
+  
+  /* Layout général avec animation subtile du fond */
+  .container {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+  
+  .content-card {
+      width: 100%;
+      max-width: 1200px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--box-shadow);
+      border: 2px solid rgba(255, 165, 0, 0.2);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  /* Titre principal avec effet de texte */
+  .content-card > h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 3rem;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .content-card > h2::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background: var(--gradient-primary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+      box-shadow: 0 0 8px var(--primary-glow);
+  }
+  
+  /* ====================================
+     2. MODULES DE BILAN AMÉLIORÉS
+     ==================================== */
+  .bilan-module {
+      background-color: var(--header-bg);
+      border: none;
+      border-radius: var(--border-radius);
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow);
+      width: 100%;
+      position: relative;
+  }
+  
+  .bilan-module::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-primary);
+      z-index: 1;
+  }
+  
+  .bilan-module:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  .bilan-header {
+      padding: 2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: var(--gradient-dark);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .bilan-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: translateX(-100%);
+  }
+  
+  .bilan-header:hover::after {
+      transition: transform 0.8s ease;
+      transform: translateX(100%);
+  }
+  
+  /* Image header avec effet de bordure brillante */
+  .bilan-header img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 3px solid transparent;
+      border-radius: 50%; /* Images rondes pour plus de modernité */
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+  }
+  
+  .bilan-header:hover img {
+      transform: scale(1.05) rotate(3deg);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
+  }
+  
+  .bilan-title {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin: 0;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 2;
+  }
+  
+  .bilan-header:hover .bilan-title {
+      color: #ffca80;
+      text-shadow: 0 0 10px var(--primary-glow);
+  }
+  
+  /* Indicateur de flèche animé */
+  .arrow-indicator {
+      margin-left: auto;
+      color: var(--primary);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 2;
+  }
+  
+  .bilan-header:hover .arrow-indicator {
+      color: #ffca80;
+      transform: translateY(5px);
+  }
+  
+  .bilan-header.active .arrow-indicator {
+      transform: rotate(180deg);
+  }
+  
+  /* ====================================
+     3. CONTENU DES MODULES AMÉLIORÉ
+     ==================================== */
+  .bilan-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      padding: 0 2rem;
+      background: var(--card-bg);
+      position: relative;
+  }
+  
+  .bilan-content.active {
+      max-height: 2000px; /* Augmenté pour les contenus plus grands */
+      padding: 2rem;
+      transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease;
+  }
+  
+  /* Animation d'ouverture du contenu */
+  .bilan-text {
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+      position: relative;
+  }
+  
+  .bilan-content.active .bilan-text,
+  .bilan-content.active .detail-item {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+  /* Grille de détails avec animations décalées */
+  .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+  }
+  
+  .detail-item {
+      background: rgba(42, 44, 77, 0.6);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      border-left: 3px solid var(--primary);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .detail-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(47, 49, 86, 0.8);
+  }
+  
+  /* Effet de lueur subtile sur hover */
+  .detail-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top left, var(--primary-glow), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+  }
+  
+  .detail-item:hover::before {
+      opacity: 0.1;
+  }
+  
+  .detail-item h4 {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+      position: relative;
+  }
+  
+  .detail-item h4::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+  }
+  
+  .detail-item:hover h4::after {
+      width: 100%;
+  }
+  
+  /* Listes avec marqueurs personnalisés */
+  .bilan-text {
+      list-style: none;
+      padding-left: 0;
+  }
+  
+  .bilan-text li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+  }
+  
+  .bilan-text li::before {
+      content: '▸';
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      top: 0;
+  }
+  
+  .bilan-text li ul {
+      margin-top: 0.5rem;
+      list-style: none;
+      padding-left: 1.5rem;
+  }
+  
+  .bilan-text li ul li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+  }
+  
+  .bilan-text li ul li::before {
+      content: '→';
+      color: var(--accent);
+  }
+  
+  /* Liste des réalisations avec effet de surlignage */
+  .achievements-list {
+      list-style: none;
+      padding-left: 0;
+  }
+  
+  .achievements-list li {
+      padding: 0.7rem 0;
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 1.5rem;
+      transition: all 0.3s ease;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+  
+  .achievements-list li:last-child {
+      border-bottom: none;
+  }
+  
+  .achievements-list li::before {
+      content: '•';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+  }
+  
+  .achievements-list li:hover {
+      padding-left: 1.8rem;
+      color: #fff;
+  }
+  
+  .achievements-list li:hover::before {
+      transform: scale(1.3);
+      color: var(--primary);
+  }
+  
+  /* ====================================
+     4. EFFET DE PARTICULES ET ÉLÉMENTS DÉCORATIFS
+     ==================================== */
+  .bilan-module::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      top: -30px;
+      right: -30px;
+      opacity: 0.3;
+      transition: all 0.5s ease;
+      z-index: 0;
+  }
+  
+  .bilan-module:hover::after {
+      transform: scale(1.5);
+      opacity: 0.5;
+  }
+  
+  /* ====================================
+     5. ANIMATIONS ET TRANSITIONS
+     ==================================== */
+  @keyframes pulse {
+      0% {
+          transform: scale(1);
+          opacity: 0.8;
+      }
+      50% {
+          transform: scale(1.05);
+          opacity: 1;
+      }
+      100% {
+          transform: scale(1);
+          opacity: 0.8;
+      }
+  }
+  
+  /* Effet de pulse sur les modules actifs */
+  .bilan-module.active {
+      border-color: var(--primary);
+  }
+  
+  .bilan-module.active::before {
+      animation: pulse 2s infinite;
+  }
+  
+  /* ====================================
+     6. MEDIA QUERIES AMÉLIORÉES
+     ==================================== */
+  @media (max-width: 992px) {
+      .container {
+          padding: 0 20px;
+          margin: 30px auto;
+      }
+  
+      .bilan-header {
+          padding: 1.5rem;
+          gap: 20px;
+      }
+  
+      .bilan-header img {
+          width: 120px;
+          height: 120px;
+      }
+  
+      .bilan-title {
+          font-size: 1.2rem;
+      }
+  
+      .content-card > h2 {
+          font-size: 1.8rem;
+      }
+  
+      .details-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .bilan-header {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.5rem 1rem;
+      }
+  
+      .bilan-header img {
+          width: 100px;
+          height: 100px;
+          margin-bottom: 1rem;
+      }
+  
+      .arrow-indicator {
+          margin-top: 1rem;
+          margin-left: 0;
+      }
+  
+      .bilan-content.active {
+          padding: 1.5rem;
+      }
+  
+      .content-card {
+          padding: 1.5rem;
+      }
+  
+      .content-card > h2 {
+          font-size: 1.6rem;
+          margin-bottom: 2rem;
+      }
+  }
+  
+  @media (max-width: 480px) {
+      .container {
+          margin: 20px auto;
+          padding: 0 15px;
+      }
+  
+      .bilan-title {
+          font-size: 1rem;
+      }
+  
+      .bilan-text, 
+      .achievements-list li {
+          font-size: 0.9rem;
+      }
+  
+      .detail-item {
+          padding: 1.2rem;
+      }
+  
+      .bilan-header img {
+          width: 80px;
+          height: 80px;
+      }
+  
+      .bilan-module {
+          margin-bottom: .5rem;
+      }
+  }
