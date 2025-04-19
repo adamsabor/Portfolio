@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialiser le thème
+    initTheme();
+    
     // Gestion du menu mobile
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
@@ -145,4 +148,139 @@ function initializeCarousel() {
     
     // Initialisation
     updateCarousel();
+}
+
+/**
+ * Gestion des thèmes multiples
+ * Ajoutez ce code à la fin de votre fichier scripts.js
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    initThemeSwitcher();
+});
+
+function initThemeSwitcher() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeOptions = document.querySelectorAll('.theme-option');
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    const currentThemeIcon = document.querySelector('.current-theme-icon');
+    
+    if (!themeToggle || !themeSwitcher || !currentThemeIcon) {
+        console.warn("Éléments du sélecteur de thème manquants");
+        return;
+    }
+    
+    // Définir les icônes pour chaque thème
+    const themeIcons = {
+        'dark': '🌙',
+        'light': '☀️',
+        'nature': '🌿',
+        'colorblind': '👁️'
+    };
+
+    const themeEmojis = {
+        'dark': '🌙',
+        'light': '☀️',
+        'nature': '🌿',
+        'colorblind': '👁️'
+    };
+
+    // Fonction pour appliquer un thème
+    function applyTheme(theme) {
+        // Supprimer tous les attributs data-theme précédents
+        document.documentElement.removeAttribute('data-theme');
+        document.body.removeAttribute('data-theme');
+        
+        // Appliquer le nouveau thème
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
+        
+        // Sauvegarder la préférence
+        localStorage.setItem('theme', theme);
+        
+        // Mettre à jour l'interface
+        updateActiveTheme(theme);
+        
+        // Animation du bouton
+        themeToggle.classList.add('theme-changing');
+        setTimeout(() => {
+            themeToggle.classList.remove('theme-changing');
+        }, 500);
+    }
+    
+    // Vérifier s'il y a un thème sauvegardé
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Appliquer le thème sauvegardé au chargement
+    applyTheme(savedTheme);
+    
+    // Événement de clic pour ouvrir/fermer le menu des thèmes
+    themeToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeSwitcher.classList.toggle('active');
+    });
+    
+    // Événement de clic pour chaque option de thème
+    themeOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const newTheme = option.getAttribute('data-theme');
+            applyTheme(newTheme);
+            themeSwitcher.classList.remove('active');
+        });
+    });
+    
+    // Fermer le menu des thèmes si on clique ailleurs
+    document.addEventListener('click', (e) => {
+        if (!themeSwitcher.contains(e.target)) {
+            themeSwitcher.classList.remove('active');
+        }
+    });
+    
+    // Fonction pour mettre à jour l'interface selon le thème actif
+    function updateActiveTheme(theme) {
+        // Mettre à jour l'icône du bouton principal
+        currentThemeIcon.textContent = themeIcons[theme] || '🎨';
+        
+        // Mettre à jour la classe active sur les options
+        themeOptions.forEach(option => {
+            if (option.getAttribute('data-theme') === theme) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        });
+    }
+}
+
+function initTheme() {
+    // Récupérer le thème sauvegardé ou utiliser le thème par défaut
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Appliquer le thème au document
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.body.setAttribute('data-theme', savedTheme);
+    
+    // Mettre à jour l'interface du sélecteur de thème si présent
+    const currentThemeIcon = document.querySelector('.current-theme-icon');
+    const themeOptions = document.querySelectorAll('.theme-option');
+    
+    if (currentThemeIcon) {
+        const themeIcons = {
+            'dark': '🌙',
+            'light': '☀️',
+            'nature': '🌿',
+            'colorblind': '👁️'
+        };
+        currentThemeIcon.textContent = themeIcons[savedTheme] || '🎨';
+    }
+    
+    if (themeOptions.length) {
+        themeOptions.forEach(option => {
+            if (option.getAttribute('data-theme') === savedTheme) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        });
+    }
 }

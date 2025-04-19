@@ -1,3 +1,318 @@
+/* Variables globales du thème */
+:root {
+    /* Variables de base */
+    --font-primary: 'Press Start 2P', cursive;
+    --transition-speed: 0.3s;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    
+    /* Thème sombre (par défaut) */
+    --primary-color: #f39c12;
+    --text-primary: #ffffff;
+    --primary-bg: #1a1a1a;
+    --darker-bg: #151515;
+    --card-bg: #2d2d44;
+    --card-hover: #3d3d5c;
+    --border-primary: #3d3d3d;
+    --hover-primary: #f1c40f;
+    --box-glow: 0 0 15px rgba(243, 156, 18, 0.3);
+    --nav-bg: rgba(45, 45, 68, 0.95);
+    
+    /* Thème clair */
+    --light-primary: #e67e22;
+    --light-text: #333333;
+    --light-bg: #f5f5f5;
+    --light-darker: #e5e5e5;
+    --light-card: #ffffff;
+    --light-card-hover: #f0f7ff;
+    --light-border: #dddddd;
+    --light-hover: #d35400;
+    
+    /* Thème nature */
+    --nature-primary: #4caf50;
+    --nature-text: #e0e0e0;
+    --nature-bg: #1a2f1a;
+    --nature-darker: #152615;
+    --nature-card: #2d4a2d;
+    --nature-card-hover: #3d633d;
+    --nature-border: #3d633d;
+    --nature-hover: #66bb6a;
+    
+    /* Thème colorblind */
+    --colorblind-primary: #0077bb;
+    --colorblind-text: #ffffff;
+    --colorblind-bg: #1a1a1a;
+    --colorblind-darker: #151515;
+    --colorblind-card: #2d2d44;
+    --colorblind-card-hover: #3d3d5c;
+    --colorblind-border: #3d3d3d;
+    --colorblind-hover: #00a0ee;
+}
+
+/* Application des thèmes */
+[data-theme="light"] {
+    --primary-color: var(--light-primary);
+    --text-primary: var(--light-text);
+    --primary-bg: var(--light-bg);
+    --darker-bg: var(--light-darker);
+    --card-bg: var(--light-card);
+    --card-hover: var(--light-card-hover);
+    --border-primary: var(--light-border);
+    --hover-primary: var(--light-hover);
+    --box-glow: 0 0 15px rgba(230, 126, 34, 0.3);
+}
+
+[data-theme="nature"] {
+    --primary-color: var(--nature-primary);
+    --text-primary: var(--nature-text);
+    --primary-bg: var(--nature-bg);
+    --darker-bg: var(--nature-darker);
+    --card-bg: var(--nature-card);
+    --card-hover: var(--nature-card-hover);
+    --border-primary: var(--nature-border);
+    --hover-primary: var(--nature-hover);
+    --box-glow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+[data-theme="colorblind"] {
+    --primary-color: var(--colorblind-primary);
+    --text-primary: var(--colorblind-text);
+    --primary-bg: var(--colorblind-bg);
+    --darker-bg: var(--colorblind-darker);
+    --card-bg: var(--colorblind-card);
+    --card-hover: var(--colorblind-card-hover);
+    --border-primary: var(--colorblind-border);
+    --hover-primary: var(--colorblind-hover);
+    --box-glow: 0 0 15px rgba(0, 119, 187, 0.3);
+}
+
+/* Styles spécifiques pour le thème daltonien */
+[data-theme="colorblind"] .content-card {
+    border-width: 2px !important;
+}
+
+[data-theme="colorblind"] .menu-link {
+    border-width: 2px !important;
+}
+
+[data-theme="colorblind"] .theme-toggle-btn {
+    border-width: 2px !important;
+}
+
+/* Appliquer la transition à tous les éléments */
+*, *::before, *::after {
+    transition: var(--theme-transition);
+}
+
+/* Styles de base qui utilisent les variables */
+body {
+    background-color: var(--primary-bg) !important;
+    color: var(--text) !important;
+}
+
+.nav-header {
+    background-color: var(--darker-bg) !important;
+    border-bottom-color: var(--accent) !important;
+}
+
+.content-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--accent) !important;
+    box-shadow: var(--border-glow) !important;
+}
+
+.content-card:hover {
+    background-color: var(--card-hover) !important;
+}
+
+.menu-link {
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+.menu-link:hover {
+    background-color: var(--accent) !important;
+    color: var(--darker-bg) !important;
+}
+
+.dropdown-content {
+    background-color: var(--darker-bg) !important;
+    border-color: var(--accent) !important;
+}
+
+.lateral-contact {
+    background-color: var(--darker-bg) !important;
+    border-color: var(--accent) !important;
+}
+
+.footer {
+    background-color: var(--darker-bg) !important;
+    border-top-color: var(--accent) !important;
+}
+
+/* Styles spécifiques pour chaque thème */
+[data-theme="sunset"] .footer {
+    background-color: #261429;
+}
+
+[data-theme="sunset"] .menu-link:hover {
+    color: #ffe4d0;
+}
+
+[data-theme="ocean"] .footer {
+    background-color: #042e38;
+}
+
+[data-theme="ocean"] .menu-link:hover {
+    color: #e0f7ff;
+}
+
+/* Mode clair */
+[data-theme="light"] {
+    --primary-bg: #f5f5ff;
+    --darker-bg: #e5e5f0;
+    --card-bg: #ffffff;
+    --card-hover: #f0f0f7;
+    --accent: #ff7b00;
+    --accent-hover: #ff6600;
+    --text: #333344;
+    --border-glow: 0 0 10px rgba(255, 123, 0, 0.2);
+}
+
+/* Styles spécifiques pour le mode clair */
+[data-theme="light"] .nav-header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .content-card:nth-child(even) {
+    background-color: #f0f0f7;
+}
+
+[data-theme="light"] .content-card:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+[data-theme="light"] .menu-link:hover {
+    color: #1b1b32;
+}
+
+[data-theme="light"] .footer {
+    background-color: #e5e5f0;
+}
+
+/* Styles du sélecteur de thèmes */
+.theme-switcher {
+    margin-left: 1rem;
+    position: relative;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--border-glow);
+}
+
+.current-theme-icon {
+    font-size: 18px;
+}
+
+.theme-options {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 120px;
+    box-shadow: var(--border-glow);
+    z-index: 100;
+}
+
+.theme-switcher.active .theme-options {
+    display: flex;
+}
+
+.theme-option {
+    background: none;
+    border: none;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text);
+}
+
+.theme-option:hover {
+    background-color: var(--card-hover);
+}
+
+.theme-option-icon {
+    font-size: 16px;
+}
+
+.theme-option-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+}
+
+/* Animation lorsqu'un thème est sélectionné */
+.theme-option.active {
+    background-color: var(--accent);
+    color: var(--primary-bg);
+}
+
+/* Animation du bouton */
+.theme-changing {
+    animation: rotate 0.5s ease;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Media queries pour le sélecteur de thèmes */
+@media (max-width: 768px) {
+    .theme-switcher {
+        position: absolute;
+        top: 15px;
+        right: 65px;
+    }
+    
+    .theme-toggle-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .theme-options {
+        right: -20px;
+        top: 45px;
+    }
+}
+
 /* ====================================
    1. VARIABLES ET RESET
    ==================================== */
@@ -762,4 +1077,24 @@ img {
 /* Fix pour le curseur sur les liens */
 a, button, .menu-link, .dropdown, .contact-item {
     cursor: pointer;
+}
+
+/* Forcer l'application des couleurs de texte */
+h1, h2, h3, h4, h5, h6, p, span, a {
+    color: var(--text) !important;
+}
+
+/* Forcer l'application des couleurs d'arrière-plan */
+.theme-options, .nav-menu, .dropdown-content {
+    background-color: var(--darker-bg) !important;
+}
+
+/* Forcer l'application des couleurs d'accent */
+button, .btn, .theme-option {
+    border-color: var(--accent) !important;
+}
+
+button:hover, .btn:hover, .theme-option:hover {
+    background-color: var(--accent) !important;
+    color: var(--darker-bg) !important;
 }

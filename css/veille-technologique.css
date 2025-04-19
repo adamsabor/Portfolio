@@ -1,13 +1,17 @@
 /* ====================================
    1. VARIABLES ET BASE
    ==================================== */
-   :root {
-    --primary: #ffa500;  /* Orange doré - harmonisé avec vos autres pages */
-    --text: #e6e6fa;     /* Couleur de texte harmonisée */
-    --bg: #1b1b32;       /* Couleur de fond harmonisée */
-    --card-bg: rgb(42, 44, 77); /* Couleur de fond des cartes harmonisée */
-    --box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
-    --transition: all 0.3s ease;
+:root {
+    /* Variables harmonisées avec les thèmes globaux */
+    --veille-primary: var(--primary-color);
+    --veille-text: var(--text-primary);
+    --veille-bg: var(--primary-bg);
+    --veille-card-bg: var(--darker-bg);
+    --veille-box-shadow: var(--box-shadow);
+    --veille-border: var(--border-primary);
+    --veille-hover: var(--hover-primary);
+    --veille-transition: var(--transition-speed);
+    --veille-focus-shadow: 0 0 0 3px var(--primary-color-alpha);
 }
 
 /* Base */
@@ -15,22 +19,24 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
+    color: var(--veille-text);
+    background: var(--veille-bg);
 }
 
 /* Titre principal */
 .tech-watch h2 {
-    font-family: 'Press Start 2P', cursive;
-    color: var(--primary);
+    font-family: var(--font-primary);
+    color: var(--veille-primary);
     font-size: 1.8rem;
     margin: 2.5rem 0;
     text-align: center;
     line-height: 1.5;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: var(--text-shadow);
 }
 
 .tech-watch h3 {
-    font-family: 'Press Start 2P', cursive;
-    color: var(--primary);
+    font-family: var(--font-primary);
+    color: var(--veille-primary);
     font-size: 1.3rem;
     margin: 2rem 0;
     text-align: center;
@@ -41,23 +47,24 @@
    2. RÉSUMÉ
    ==================================== */
 .summary {
-    background: var(--card-bg);
+    background: var(--veille-card-bg);
     padding: 2.5rem;
     margin: 2.5rem auto;
-    border: 2px solid var(--primary);
-    border-radius: 12px;
+    border: 2px solid var(--veille-border);
+    border-radius: var(--border-radius);
     max-width: 1000px;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--veille-box-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .summary:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--veille-primary);
 }
 
 .summary p {
-    color: var(--text);
+    color: var(--veille-text);
     font-size: 1.1rem;
     line-height: 1.8;
     text-align: justify;
@@ -71,9 +78,9 @@
     height: 100px;
     padding: 1rem;
     margin: 0.5rem;
-    background: var(--card-bg);
-    border: 2px solid var(--primary);
-    border-radius: 12px;
+    background: var(--veille-card-bg);
+    border: 2px solid var(--veille-border);
+    border-radius: var(--border-radius);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: inline-block;
     vertical-align: middle;
@@ -82,20 +89,21 @@
 
 .imgveille:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--veille-primary);
 }
 
 /* ====================================
    4. SECTION FILTRES
    ==================================== */
 .filters-section {
-    background: var(--card-bg);
+    background: var(--veille-card-bg);
     padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--veille-border);
     margin: 2.5rem auto;
     max-width: 1000px;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--veille-box-shadow);
 }
 
 .filters-container {
@@ -111,31 +119,50 @@
 }
 
 .filters-section label {
-    color: var(--primary);
-    font-family: 'Press Start 2P', cursive;
+    color: var(--veille-text);
+    font-family: var(--font-primary);
     font-size: 0.8rem;
 }
 
 .filters-section input,
 .filters-section select {
     padding: 0.8rem;
-    background: var(--bg);
-    border: 2px solid var(--primary);
-    border-radius: 6px;
-    color: var(--text);
+    background: var(--veille-bg);
+    border: 2px solid var(--veille-border);
+    border-radius: var(--border-radius);
+    color: var(--veille-text);
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .filters-section input:focus,
 .filters-section select:focus {
-    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.4);
+    border-color: var(--veille-primary);
+    box-shadow: var(--veille-focus-shadow);
     outline: none;
 }
 
 .filters-section input:hover,
 .filters-section select:hover {
-    border-color: #ffb732;
+    border-color: var(--veille-hover);
+}
+
+.results-counter-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 2px solid var(--veille-primary);
+}
+
+.results-counter {
+    color: var(--veille-text);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    border: 1px solid var(--veille-border);
+    border-radius: var(--border-radius);
+    background: var(--veille-card-bg);
 }
 
 /* ====================================
@@ -150,20 +177,21 @@
 
 .article-box {
     position: relative;
-    background: var(--card-bg);
-    border: 2px solid var(--primary);
-    border-radius: 12px;
+    background: var(--veille-card-bg);
+    border: 2px solid var(--veille-border);
+    border-radius: var(--border-radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: var(--box-shadow);
+    transition: all var(--veille-transition);
+    box-shadow: var(--veille-box-shadow);
 }
 
 .article-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--veille-primary);
 }
 
 .article-header {
@@ -171,6 +199,7 @@
     width: 100%;
     height: 200px;
     overflow: hidden;
+    background: var(--veille-bg);
 }
 
 .article-image {
@@ -178,15 +207,17 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    opacity: 0.9;
 }
 
 .article-box:hover .article-image {
     transform: scale(1.05);
+    opacity: 1;
 }
 
 .article-box h3 {
-    font-family: 'Press Start 2P', cursive;
-    color: var(--primary);
+    font-family: var(--font-primary);
+    color: var(--veille-primary);
     font-size: 0.9rem;
     padding: 1.5rem;
     line-height: 1.6;
@@ -194,7 +225,7 @@
 }
 
 .article-box p {
-    color: var(--text);
+    color: var(--veille-text);
     padding: 0 1.5rem;
     line-height: 1.6;
     flex-grow: 1;
@@ -202,23 +233,48 @@
 }
 
 .article-box a {
-    color: var(--primary);
+    color: var(--veille-primary);
     text-decoration: none;
     padding: 0.8rem;
     margin: 1.5rem;
-    border: 2px solid var(--primary);
-    border-radius: 6px;
+    border: 2px solid var(--veille-border);
+    border-radius: var(--border-radius);
     text-align: center;
     transition: all 0.3s ease;
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--font-primary);
     font-size: 0.7rem;
     display: block;
+    background: var(--veille-card-bg);
 }
 
 .article-box a:hover {
-    background: var(--primary);
-    color: var(--bg);
-    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+    background: var(--veille-primary);
+    color: var(--veille-bg);
+    border-color: var(--veille-primary);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Bouton de réinitialisation */
+.reset-button {
+    background: var(--veille-primary);
+    color: var(--veille-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    margin: 2rem auto 0;
+    width: 100%;
+    max-width: 250px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.reset-button:hover {
+    background: var(--veille-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
 }
 
 /* Drapeau de langue */

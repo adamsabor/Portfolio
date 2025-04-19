@@ -75,24 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour mettre à jour le compteur de résultats
     const updateResultsCounter = () => {
-        let counter = document.querySelector('.results-counter');
+        const counter = document.querySelector('.results-counter');
         const visibleArticles = getAllArticles().filter(a => a.style.display !== 'none');
-
-        if (!counter) {
-            counter = document.createElement('div');
-            counter.className = 'results-counter';
-            counter.style.cssText = `
-                color: #f39c12;
-                margin: 2rem 0 1rem;
-                text-align: center;
-                font-family: 'Press Start 2P', cursive;
-                font-size: 0.9rem;
-                padding: 1rem;
-                border-top: 2px solid #f39c12;
-            `;
-            document.querySelector('.filters-container').appendChild(counter);
-        }
-
         counter.textContent = `${visibleArticles.length} article${visibleArticles.length > 1 ? 's' : ''} trouvé${visibleArticles.length > 1 ? 's' : ''}`;
     };
 

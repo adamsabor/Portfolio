@@ -2,21 +2,22 @@
    1. VARIABLES ET BASE
    ==================================== */
    :root {
-      --primary: #ffa500;  /* Orange doré harmonisé avec vos autres pages */
-      --primary-glow: rgba(255, 165, 0, 0.4);
-      --secondary: #6c5ce7; /* Nouvelle couleur secondaire pour plus de dynamisme */
-      --accent: #00d2d3;    /* Couleur d'accent pour certains éléments */
-      --text: #e6e6fa;
-      --bg: #1b1b32;
-      --card-bg: rgb(42, 44, 77);
-      --card-bg-hover: rgb(47, 49, 86);
-      --header-bg: #2c2c54;
-      --gradient-primary: linear-gradient(135deg, #ffa500, #ff7b00);
-      --gradient-dark: linear-gradient(135deg, #2c2c54, #393960);
-      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      --glow-shadow: 0 0 15px var(--primary-glow);
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --border-radius: 15px;
+      /* Utilisation des variables globales du thème */
+      --primary: var(--primary-color);
+      --primary-glow: var(--box-glow);
+      --secondary: var(--card-bg);
+      --accent: var(--primary-color);
+      --text: var(--text-primary);
+      --bg: var(--primary-bg);
+      --card-bg: var(--card-bg);
+      --card-bg-hover: var(--card-hover);
+      --header-bg: var(--darker-bg);
+      --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--hover-primary));
+      --gradient-dark: linear-gradient(135deg, var(--darker-bg), var(--card-bg));
+      --box-shadow: var(--box-shadow);
+      --glow-shadow: var(--box-glow);
+      --transition: var(--transition-speed);
+      --border-radius: var(--border-radius);
   }
   
   /* Layout général avec animation subtile du fond */
@@ -50,7 +51,7 @@
       border-radius: var(--border-radius);
       padding: 2rem;
       box-shadow: var(--box-shadow);
-      border: 2px solid rgba(255, 165, 0, 0.2);
+      border: 2px solid var(--primary);
       backdrop-filter: blur(5px);
       position: relative;
       overflow: hidden;
@@ -171,7 +172,7 @@
   }
   
   .bilan-header:hover .bilan-title {
-      color: #ffca80;
+      color: var(--hover-primary);
       text-shadow: 0 0 10px var(--primary-glow);
   }
   
@@ -186,7 +187,7 @@
   }
   
   .bilan-header:hover .arrow-indicator {
-      color: #ffca80;
+      color: var(--hover-primary);
       transform: translateY(5px);
   }
   
@@ -238,12 +239,12 @@
   }
   
   .detail-item {
-      background: rgba(42, 44, 77, 0.6);
+      background: var(--card-bg);
       padding: 1.5rem;
       border-radius: var(--border-radius);
       border-left: 3px solid var(--primary);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s ease;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
       opacity: 0;
       transform: translateY(20px);
       position: relative;
@@ -252,8 +253,8 @@
   
   .detail-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      background: rgba(47, 49, 86, 0.8);
+      box-shadow: var(--hover-shadow);
+      background: var(--card-bg-hover);
   }
   
   /* Effet de lueur subtile sur hover */
