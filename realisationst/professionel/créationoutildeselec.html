@@ -1,73 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Refonte complète du processus de désélection & création d'un outil d'analyse dédié
-    Aperçu </title>
-   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="/css/temp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outil de Désélection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/temp.css">
+    <script src="../../js/scripts.js" defer></script>
 </head>
 <body>
-   <main class="bento-container">
-       <div class="bento-grid">
-           <!-- Image principale -->
-           <div class="bento-item banner">
-               <img src="/images/rob.webp" alt="Titre projet" class="banner-img">
-           </div>
-           <a href="/réalisationsentreprise.html" class="back-button">
-            ← Retour
+    <main class="bento-container">
+        <a href="../../réalisationsentreprise.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour
         </a>
-           <!-- Infos -->
-           <div class="bento-item info">
-               <h1>Refonte complète du processus de désélection & création d'un outil d'analyse dédié
-                Aperçu </h1>
-               <div class="metadata-grid">
-                   <span>📅 Octobre 2024</span>
-                   <span>⌛ 3 mois</span>
-                   <span>👥 7</span>
-                   <span> ⭐️⭐️⭐️⭐️⭐️</span>
-               </div>
-           </div>
 
-           <!-- Contexte -->
-           <div class="bento-item context">
-            <h2>Objectif</h2>
-            <p>Développement d'un outil de support centralisant toutes les données relatives aux références traitées par les aménageurs des méthodes. Présentation et déploiement de cet outil auprès des trois équipes en rotation (nuit, matin et après-midi).</p>
+        <div class="project-header">
+            <div class="project-image">
+                <img src="../../images/rob.webp" alt="Outil de Désélection" class="banner-img">
+            </div>
+            <div class="project-info">
+                <h1 class="project-title">
+                    <i class="fas fa-tools"></i>
+                    Outil de Désélection
+                </h1>
+                <div class="project-metadata">
+                    <div class="metadata-item">
+                        <i class="far fa-calendar"></i>
+                        Octobre 2024
+                    </div>
+                    <div class="metadata-item">
+                        <i class="far fa-clock"></i>
+                        3 mois
+                    </div>
+                    <div class="metadata-item">
+                        <i class="fas fa-users"></i>
+                        7 personnes
+                    </div>
+                    <div class="project-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        
 
-           <!-- Documents -->
-           <div class="bento-item docs">
-               <h2>Documents</h2>
-               <div class="docs-grid">
-                   <a href="/docs/image outil deselection.png" class="doc-link" target="_blank" rel="noopener">Apercu de l'outil</a>
-                   <a href="/docs/Process tri rapport deselection (2).pdf" class="doc-link" target="_blank" rel="noopener">Process d'utilisation </a>
-                   <a href="/docs/video/video outil deselc.mp4" class="doc-link" target="_blank" rel="noopener">Video d'utilisation de l'outil</a>
-                   <a href="/docs/schemadonnée.png" class="doc-link" target="_blank" rel="noopener">Gain obtenue suite à l'utilisation de l'outil</a>
-               </div>
-           </div>
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-bullseye"></i>
+                Objectif
+            </h2>
+            <p class="objective-text">
+                Développement d'un outil de support centralisant toutes les données relatives aux références traitées par les aménageurs des méthodes. Présentation et déploiement de cet outil auprès des trois équipes en rotation (nuit, matin et après-midi).
+            </p>
+        </section>
 
-           <!-- Technologies -->
-           <div class="bento-item skills">
-               <h2>Technologies</h2>
-               <div class="skills-list">
-                   <span class="skill-tag">excel</span>
-                   <span class="skill-tag">sci</span>
-                   <span class="skill-tag">wms</span>
-               </div>
-           </div>
+        <section class="documents-section">
+            <h2 class="documents-title">
+                <i class="fas fa-folder-open"></i>
+                Documents
+            </h2>
+            <div class="documents-grid">
+                <a href="../../docs/image outil deselection.png" class="document-card" target="_blank">
+                    <i class="fas fa-image"></i>
+                    Aperçu de l'outil
+                </a>
+                <a href="../../docs/Process tri rapport deselection (2).pdf" class="document-card" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                    Process d'utilisation
+                </a>
+                <a href="../../docs/video/video outil deselc.mp4" class="document-card" target="_blank">
+                    <i class="fas fa-video"></i>
+                    Vidéo d'utilisation
+                </a>
+                <a href="../../docs/schemadonnée.png" class="document-card" target="_blank">
+                    <i class="fas fa-chart-line"></i>
+                    Gains obtenus
+                </a>
+            </div>
+        </section>
 
-           <div class="bento-item results">
-            <h2>compétences acquises</h2>
-            <ul>
+        <section class="technologies-section">
+            <h2 class="technologies-title">
+                <i class="fas fa-code"></i>
+                Technologies
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fas fa-file-excel"></i>
+                    Excel
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    SCI
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-warehouse"></i>
+                    WMS
+                </div>
+            </div>
+        </section>
+
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-graduation-cap"></i>
+                Compétences acquises
+            </h2>
+            <ul class="objective-text">
                 <li>Gérer le patrimoine informatique</li>
+                <li>Répondre aux incidents et aux demandes d’assistance</li>
                 <li>Travailler en mode projet</li>
-                <li>Répondre aux demandes d'assistance</li>
+                <li>Mettre à disposition des utilisateurs un service informatique</li>
+                <li>Organiser son développement professionnel</li>
             </ul>
-        </div>
+        </section>
         
-       </div>
-   </main>
+    </main>
 </body>
 </html>

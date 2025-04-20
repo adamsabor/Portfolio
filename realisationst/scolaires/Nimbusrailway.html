@@ -1,59 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Nimbus Railway</title>
-   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="/css/temp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Railway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/temp.css">
+    <script src="../../js/scripts.js" defer></script>
 </head>
 <body>
-   <main class="bento-container">
-       <div class="bento-grid">
-           <!-- Image principale -->
-           <div class="bento-item banner">
-               <img src="/images/nimbusrailway.webp" alt="Titre projet" class="banner-img">
-           </div>
-           <a href="/réalisationsscolaire.html" class="back-button">
-            ← Retour
+    <main class="bento-container">
+        <a href="../../réalisationsscolaire.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour
         </a>
-           <!-- Infos -->
-           <div class="bento-item info">
-               <h1>Nimbus Railway</h1>
-               <div class="metadata-grid">
-                   <span>📅 janvier 2025</span>
-                   <span> ⌛ 4 mois</span>
-                   <span>👥 3 Participants</span>
-                   <span>⭐️⭐️⭐️⭐️⭐️ Note</span>
-               </div>
-           </div>
 
-           <!-- Contexte -->
-           <div class="bento-item context">
-               <h2>Objectif</h2>
-               <p>Dans le cadre d’un projet académique, nous avons conçu un site web avec Django, dédié à l’univers de JoJo’s Bizarre Adventure. En s’appuyant sur l’API "Jikan", le site répertorie 170 personnages et propose plusieurs fonctionnalités, telles qu’une section de théories, un système de classement basé sur les likes et une consultation des préférences utilisateurs. Ce projet met en pratique nos compétences techniques dans un contexte thématique spécifique.</p>
-           <!-- Documents -->
-           <div class="bento-item docs">
-               <h2>Documents</h2>
-               <div class="docs-grid">
-                   <a href="/docs/nimbusrailway/Modele relationnel.png" class="doc-link" target="_blank">Modele relationnel</a>
-                   <a href="/docs/nimbusrailway/NR_Maquette.pdf" class="doc-link" target="_blank">Maquette</a>
-                   <a href="/docs/nimbusrailway/README.md" class="doc-link" target="_blank">Read me </a>
-                   <a href="/docs/nimbusrailway/cahier techniques.md" class="doc-link" target="_blank">Cahier technique</a>
-                   <a href="/docs/nimbusrailway/planning.png" class="doc-link" target="_blank">Planning</a>
+        <div class="project-header">
+            <div class="project-image">
+                <img src="../../images/nimbusrailway.webp" alt="Nimbus Railway" class="banner-img">
+            </div>
+            <div class="project-info">
+                <h1 class="project-title">
+                    <i class="fas fa-train"></i>
+                    Nimbus Railway
+                </h1>
+                <div class="project-metadata">
+                    <div class="metadata-item">
+                        <i class="far fa-calendar"></i>
+                        Janvier 2025
+                    </div>
+                    <div class="metadata-item">
+                        <i class="far fa-clock"></i>
+                        4 mois
+                    </div>
+                    <div class="metadata-item">
+                        <i class="fas fa-users"></i>
+                        3 personnes
+                    </div>
+                    <div class="project-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
                 </div>
-           </div>
+            </div>
+        </div>
 
-           <!-- Technologies -->
-           <div class="bento-item skills">
-               <h2>Technologies</h2>
-               <div class="skills-list">
-                   <span class="skill-tag">Java FX</span>
-                   <span class="skill-tag">JAVA</span>
-                   <span class="skill-tag">MySQL</span>
-               </div>
-           </div>
-       </div>
-   </main>
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-bullseye"></i>
+                Objectif
+            </h2>
+            <p class="objective-text">
+                Dans le cadre d'un projet académique, nous avons conçu un site web avec Django, dédié à l'univers de JoJo's Bizarre Adventure. En s'appuyant sur l'API "Jikan", le site répertorie 170 personnages et propose plusieurs fonctionnalités, telles qu'une section de théories, un système de classement basé sur les likes et une consultation des préférences utilisateurs. Ce projet met en pratique nos compétences techniques dans un contexte thématique spécifique.
+            </p>
+        </section>
+
+        <section class="documents-section">
+            <h2 class="documents-title">
+                <i class="fas fa-folder-open"></i>
+                Documents
+            </h2>
+            <div class="documents-grid">
+                <a href="../../docs/nimbusrailway/Modele relationnel.png" class="document-card" target="_blank">
+                    <i class="fas fa-database"></i>
+                    Modèle relationnel
+                </a>
+                <a href="../../docs/nimbusrailway/NR_Maquette.pdf" class="document-card" target="_blank">
+                    <i class="fas fa-paint-brush"></i>
+                    Maquette
+                </a>
+                <a href="../../docs/nimbusrailway/README.md" class="document-card" target="_blank">
+                    <i class="fas fa-book"></i>
+                    Read me
+                </a>
+                <a href="../../docs/nimbusrailway/cahier techniques.md" class="document-card" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                    Cahier technique
+                </a>
+                <a href="../../docs/nimbusrailway/planning.png" class="document-card" target="_blank">
+                    <i class="fas fa-calendar-alt"></i>
+                    Planning
+                </a>
+            </div>
+        </section>
+
+        <section class="technologies-section">
+            <h2 class="technologies-title">
+                <i class="fas fa-code"></i>
+                Technologies
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-java"></i>
+                    Java FX
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-java"></i>
+                    JAVA
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    MySQL
+                </div>
+            </div>
+        </section>
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-graduation-cap"></i>
+                Compétences acquises
+            </h2>
+            <ul class="objective-text">
+                <li>Gérer le patrimoine informatique</li>
+                <li>Travailler en mode projet</li>
+            </ul>
+        </section>
+        
+    </main>
 </body>
 </html>

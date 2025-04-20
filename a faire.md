@@ -1,10 +1,6 @@
 # À faire
 
-## Design
-- Améliorer le responsive design
-- Ajouter un avatar personnalisé
 
-## Éléments à trouver
 
 
 ## Pour plus tard

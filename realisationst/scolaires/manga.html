@@ -1,63 +1,119 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Manga Shop</title>
-   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="/css/temp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/temp.css">
+    <script src="../../js/scripts.js" defer></script>
 </head>
 <body>
-   <main class="bento-container">
-       <div class="bento-grid">
-           <!-- Image principale -->
-           <div class="bento-item banner">
-               <img src="/images/manga.webp" alt="Titre projet" class="banner-img">
-           </div>
-           <a href="/réalisationsscolaire.html" class="back-button">
-            ← Retour
+    <main class="bento-container">
+        <a href="../../réalisationsscolaire.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour
         </a>
-           <!-- Infos -->
-           <div class="bento-item info">
-               <h1>Manga Shop</h1>
-               <div class="metadata-grid">
-                   <span>📅 avril 2024</span>
-                   <span> ⌛ 1 mois</span>
-                   <span>👥 1 Participants</span>
-                   <span>⭐️⭐️⭐️⭐️⭐️ Note</span>
-               </div>
-           </div>
 
-           <!-- Contexte -->
-           <div class="bento-item context">
-               <h2>Objectif</h2>
-               <p>Dans le cadre d'un projet académique, j'ai développé un site fictif d'e-commerce de mangas utilisant HTML, CSS, JavaScript et PHP. Le site est connecté à une base de données MySQL que j'ai hébergée localement via MAMP. J'ai implémenté un catalogue complet de mangas avec système de recherche, panier d'achat. Les clients peuvent parcourir les produits,  gérer leur panier et passer commande.</p>
-           <!-- Documents -->
-           <div class="bento-item docs">
-               <h2>Documents</h2>
-               <div class="docs-grid">
-                   <a href="/docs/mangashop/apercu manga.png" class="doc-link" target="_blank">Apercu du projet</a>
-                   <a href="/docs/consignemanga.md" class="doc-link" target="_blank">Contexte du projet</a>
-               </div>
-           </div>
+        <div class="project-header">
+            <div class="project-image">
+                <img src="../../images/manga.webp" alt="Manga Shop" class="banner-img">
+            </div>
+            <div class="project-info">
+                <h1 class="project-title">
+                    <i class="fas fa-book"></i>
+                    Manga Shop
+                </h1>
+                <div class="project-metadata">
+                    <div class="metadata-item">
+                        <i class="far fa-calendar"></i>
+                        Avril 2024
+                    </div>
+                    <div class="metadata-item">
+                        <i class="far fa-clock"></i>
+                        1 mois
+                    </div>
+                    <div class="metadata-item">
+                        <i class="fas fa-user"></i>
+                        1 personne
+                    </div>
+                    <div class="project-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-           <!-- Technologies -->
-           <div class="bento-item skills">
-               <h2>Technologies</h2>
-               <div class="skills-list">
-                   <span class="skill-tag">HTML</span>
-                   <span class="skill-tag">CSS</span>
-                   <span class="skill-tag">JavaScript</span>
-                   <span class="skill-tag">PHP</span>
-                   <span class="skill-tag">MySQL</span>
-               </div>
-           </div>
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-bullseye"></i>
+                Objectif
+            </h2>
+            <p class="objective-text">
+                Dans le cadre d'un projet académique, j'ai développé un site fictif d'e-commerce de mangas utilisant HTML, CSS, JavaScript et PHP. Le site est connecté à une base de données MySQL que j'ai hébergée localement via MAMP. J'ai implémenté un catalogue complet de mangas avec système de recherche, panier d'achat. Les clients peuvent parcourir les produits, gérer leur panier et passer commande.
+            </p>
+        </section>
 
-         
+        <section class="documents-section">
+            <h2 class="documents-title">
+                <i class="fas fa-folder-open"></i>
+                Documents
+            </h2>
+            <div class="documents-grid">
+                <a href="../../docs/mangashop/apercu manga.png" class="document-card" target="_blank">
+                    <i class="fas fa-image"></i>
+                    Aperçu du projet
+                </a>
+                <a href="../../docs/consignemanga.md" class="document-card" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                    Contexte du projet
+                </a>
+            </div>
+        </section>
+
+        <section class="technologies-section">
+            <h2 class="technologies-title">
+                <i class="fas fa-code"></i>
+                Technologies
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-html5"></i>
+                    HTML
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-css3-alt"></i>
+                    CSS
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js"></i>
+                    JavaScript
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-php"></i>
+                    PHP
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    MySQL
+                </div>
+            </div>
+        </section>
+        <section class="project-objective">
+            <h2 class="objective-title">
+                <i class="fas fa-graduation-cap"></i>
+                Compétences acquises
+            </h2>
+            <ul class="objective-text">
+                <li>Gérer le patrimoine informatique</li>
+            </ul>
+        </section>
         
-        
-        
-       </div>
-   </main>
+    </main>
 </body>
 </html>
