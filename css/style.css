@@ -471,6 +471,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+    padding: 0 1rem;
 }
 
 /* Profil dans la navigation */
@@ -514,24 +515,27 @@ body {
     box-shadow: var(--border-glow);
 }
 
-/* Bouton menu mobile */
+/* Styles du menu mobile */
 .mobile-menu-btn {
     display: none;
     flex-direction: column;
     gap: 6px;
-    background: none;
+    width: 35px;
+    height: 25px;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 10px;
-    z-index: 101;
+    padding: 0;
+    position: relative;
+    z-index: 1000;
 }
 
 .mobile-menu-btn span {
     display: block;
-    width: 25px;
-    height: 2px;
+    width: 100%;
+    height: 3px;
     background-color: var(--accent);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Styles pour le menu déroulant */
@@ -951,11 +955,11 @@ body {
     }
 }
 
-/* Ajustements pour la navbar en version mobile */
+/* Styles du menu mobile */
 @media (max-width: 768px) {
     .nav-container {
         justify-content: space-between;
-        padding: 0 1rem;
+        padding: 1rem;
     }
 
     .mobile-menu-btn {
@@ -963,28 +967,30 @@ body {
     }
 
     .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
+        left: -100%;
         width: 100%;
+        height: 100vh;
         background-color: var(--darker-bg);
-        padding: 1rem;
-        border-bottom: 3px solid var(--accent);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        padding: 80px 2rem 2rem 2rem;
         flex-direction: column;
-        gap: 1rem;
-        z-index: 200;
+        align-items: center;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+        z-index: 999;
     }
 
     .nav-menu.active {
-        display: flex;
+        left: 0;
     }
 
     .menu-link {
         width: 100%;
         text-align: center;
         padding: 1rem;
+        border: 2px solid var(--accent);
+        margin: 0.5rem 0;
     }
 
     .dropdown {
@@ -994,19 +1000,30 @@ body {
     .dropdown-content {
         position: static;
         width: 100%;
-        margin-top: 0.5rem;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
         border: none;
-        box-shadow: none;
+        background: transparent;
+        margin-top: 0.5rem;
     }
 
     .dropdown.active .dropdown-content {
-        display: block;
+        max-height: 300px;
+        padding: 0.5rem 0;
     }
 
-    /* Animation du bouton menu */
+    .dropdown-content a {
+        padding: 1rem;
+        text-align: center;
+        border: 1px solid var(--accent);
+        margin: 0.5rem 0;
+        border-radius: 8px;
+    }
+
+    /* Animation du bouton hamburger */
     .mobile-menu-btn.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
+        transform: translateY(9px) rotate(45deg);
     }
 
     .mobile-menu-btn.active span:nth-child(2) {
@@ -1014,7 +1031,19 @@ body {
     }
 
     .mobile-menu-btn.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Empêcher le défilement quand le menu est ouvert */
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Ajustement du thème switcher en mobile */
+    .theme-switcher {
+        position: fixed;
+        top: 15px;
+        right: 60px;
     }
 }
 

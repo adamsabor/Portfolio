@@ -8,8 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = document.querySelectorAll('.dropdown');
     const body = document.body;
 
+    // Fonction pour fermer le menu
+    function closeMenu() {
+        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (body) body.classList.remove('menu-open');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    }
+
+    // Gestionnaire du bouton menu
     if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             mobileMenuBtn.classList.toggle('active');
             navMenu.classList.toggle('active');
@@ -26,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     e.stopPropagation();
+                    
+                    // Fermer tous les autres dropdowns
+                    dropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('active');
+                        }
+                    });
+                    
                     dropdown.classList.toggle('active');
                 }
             });
@@ -34,21 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fermer le menu quand on clique en dehors
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-container') && !e.target.closest('.nav-menu')) {
-            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
-            if (body) body.classList.remove('menu-open');
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        const isClickInside = e.target.closest('.nav-menu') || e.target.closest('.mobile-menu-btn');
+        if (!isClickInside && navMenu.classList.contains('active')) {
+            closeMenu();
         }
     });
 
     // Fermer le menu quand on redimensionne la fenêtre
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
-            if (body) body.classList.remove('menu-open');
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            closeMenu();
+        }
+    });
+
+    // Fermer le menu avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
         }
     });
 
