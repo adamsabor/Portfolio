@@ -128,4 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
             card.querySelector('img').style.transform = 'scale(1)';
         });
     });
+
+    // --- MISSION BOXES ANIMATION ---
+    const missionBoxes = document.querySelectorAll('.mission-box');
+    
+    missionBoxes.forEach(box => {
+        // Add hover effect
+        box.addEventListener('mouseenter', () => {
+            box.style.transform = 'translateY(-10px)';
+            const icon = box.querySelector('.mission-box-front i');
+            if (icon) {
+                icon.style.transform = 'scale(1.15) rotate(360deg)';
+            }
+        });
+
+        box.addEventListener('mouseleave', () => {
+            box.style.transform = 'translateY(0)';
+            const icon = box.querySelector('.mission-box-front i');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0)';
+            }
+        });
+
+        // Add animation to list items
+        const listItems = box.querySelectorAll('.mission-box-back li');
+        listItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+    });
 });
