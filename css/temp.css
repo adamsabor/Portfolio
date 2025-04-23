@@ -472,9 +472,10 @@ a :-webkit-any(:any-link ) {
 
 /* Technologies Grid */
 .tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .tech-item {

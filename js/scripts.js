@@ -65,6 +65,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.carousel-track')) {
         initializeCarousel();
     }
+
+    // Gestion des filtres de réalisations
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const articles = document.querySelectorAll('.realisation-article');
+    const categoryDescriptions = document.querySelectorAll('.category-description');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Retirer la classe active de tous les boutons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const selectedTheme = button.getAttribute('data-theme');
+
+            // Masquer toutes les descriptions de catégories
+            categoryDescriptions.forEach(desc => desc.classList.remove('active'));
+
+            // Afficher la description de la catégorie sélectionnée
+            if (selectedTheme !== 'all') {
+                const selectedDesc = document.getElementById(`category-${selectedTheme}`);
+                if (selectedDesc) {
+                    selectedDesc.classList.add('active');
+                }
+            }
+
+            // Filtrer les articles
+            articles.forEach(article => {
+                if (selectedTheme === 'all') {
+                    article.classList.remove('hidden');
+                } else {
+                    const articleTheme = article.getAttribute('data-theme');
+                    if (articleTheme === selectedTheme) {
+                        article.classList.remove('hidden');
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
 });
 
 /**

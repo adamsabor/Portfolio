@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         articles.forEach(article => {
             const title = article.querySelector('h3').textContent.toLowerCase();
-            const description = article.querySelector('p').textContent.toLowerCase();
+            const description = article.querySelector('p')?.textContent.toLowerCase() || '';
             const articleDate = article.dataset.date;
             const yearMatch = selectedDate === 'all' || articleDate.startsWith(selectedDate);
             const textMatch = title.includes(searchTerm) || description.includes(searchTerm);
@@ -52,7 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Réorganiser les articles dans le DOM
-        articles.forEach(article => articlesContainer.appendChild(article));
+        articles.forEach(article => {
+            article.style.display = 'flex'; // S'assurer que l'article est visible
+            articlesContainer.appendChild(article);
+        });
     };
 
     // Fonction pour mettre à jour le message "Aucun résultat"
@@ -83,7 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ajout des événements
     searchInput.addEventListener('input', filterArticles);
     dateFilter.addEventListener('change', filterArticles);
-    sortSelect.addEventListener('change', sortArticles);
+    sortSelect.addEventListener('change', () => {
+        sortArticles();
+        filterArticles();
+    });
 
     // Animation des articles lors du filtrage
     const addTransitionStyles = () => {
@@ -102,7 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialisation
     addTransitionStyles();
-    updateResultsCounter();
+    sortArticles(); // Trier les articles au chargement
+    updateResultsCounter(); // Mettre à jour le compteur initial
 
     // Ajout de la fonctionnalité de reset
     const resetButton = document.createElement('button');
@@ -136,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.value = '';
         dateFilter.value = 'all';
         sortSelect.value = 'date-desc';
-        filterArticles();
         sortArticles();
+        filterArticles();
     });
 
     document.querySelector('.filters-section').appendChild(resetButton);
