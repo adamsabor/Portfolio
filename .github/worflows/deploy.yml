@@ -26,3 +26,7 @@ jobs:
             **/.github*
             **/README.md
           dangerous-clean-slate: true
+          dry-run: false
+          log-level: verbose
+          protocol: ftp
+          timeout: 600
