@@ -15,6 +15,7 @@ jobs:
 
       - name: Deploy full site to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4
+4
 
         with:
           server: ${{ secrets.FTP_SERVER }}
