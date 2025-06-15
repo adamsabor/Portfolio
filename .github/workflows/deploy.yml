@@ -1,4 +1,4 @@
-name: OVH FTP Upload
+name: Deploy to OVH
 
 on:
   push:
@@ -6,14 +6,14 @@ on:
       - master
 
 jobs:
-  ftp-upload:
+  ftp-deploy:
     name: 📤 Upload to OVH FTP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Upload via FTP
+      - name: FTP Upload
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -23,3 +23,4 @@ jobs:
           local-dir: ./
           dangerous-clean-slate: true
           log-level: verbose
+
