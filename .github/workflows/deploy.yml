@@ -1,0 +1,22 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ftp-deploy:
+    name: 📤 FTP Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v3
+
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /www/
