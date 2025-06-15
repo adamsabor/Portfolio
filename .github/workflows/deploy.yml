@@ -13,10 +13,15 @@ jobs:
       - name: Checkout latest code
         uses: actions/checkout@v3
 
-      - name: Deploy to FTP server
+      - name: Deploy full site to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /www/
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github*
+            **/README.md
