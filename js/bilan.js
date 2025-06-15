@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Animation au défilement
+    // Animation au défilemen
     const observeElements = () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
